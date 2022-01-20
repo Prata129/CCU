@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "273834935893",
+    "project_id": "revio-14d70",
+    "storage_bucket": "revio-14d70.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:273834935893:android:627ce01d9cb32984d5f6dc",
+        "android_client_info": {
+          "package_name": "com.example.revio"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "273834935893-7k20ibgraj98jqs0cfahgnqp6e9k11nk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyChD9KvwbL_a73iCCrVA1Y6wLO6GmRoOkA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "273834935893-7k20ibgraj98jqs0cfahgnqp6e9k11nk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

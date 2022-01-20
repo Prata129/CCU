@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
           create: (context) => context.read<AuthenticationService>().authStateChanges,
           initialData: null),
       ],
-      child: MaterialApp(
+      child: const MaterialApp(
         title: 'RevioDemo',
         home: AuthenticationWrapper(),
       ),

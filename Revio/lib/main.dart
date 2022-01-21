@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:revio/ui/homepage.dart';
 import 'package:revio/ui/auth/loginpage.dart';
 import 'package:revio/service/auth/authentication_service.dart';
+import 'package:revio/ui/paymentsScreen.dart';
 import 'package:revio/ui/settingsScreen.dart';
 import 'package:revio/ui/LibraryScreen.dart';
 

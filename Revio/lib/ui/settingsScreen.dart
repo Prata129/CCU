@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:revio/ui/aboutScreen.dart';
+import 'package:revio/ui/auth/loginpage.dart';
 
 class SettingsScreen extends StatelessWidget {
   @override
@@ -10,7 +12,10 @@ class SettingsScreen extends StatelessWidget {
           children: <Widget>[
             AppBar(
               leading: IconButton(
-                  icon: Icon(Icons.arrow_back_ios), onPressed: () {}),
+                  icon: Icon(Icons.arrow_back_ios),
+                  onPressed: () {
+                    Navigator.pop(context);
+                  }),
               iconTheme: IconThemeData(color: Color(0xFFC2C2C2)),
               backgroundColor: Color(0xFF222222),
               title: Text("Settings",
@@ -43,7 +48,10 @@ class SettingsScreen extends StatelessWidget {
               width: 390,
               decoration: BoxDecoration(color: const Color(0x80C4C4C4)),
               child: TextButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => AboutScreen()));
+                },
                 child: const Text(
                   'About',
                   style: TextStyle(color: Color(0xFFFFFFFF), fontSize: 25),
@@ -62,7 +70,10 @@ class SettingsScreen extends StatelessWidget {
                     bottomLeft: Radius.circular(10),
                   )),
               child: TextButton(
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => LoginPage()));
+                },
                 child: const Text(
                   'Logout',
                   style: TextStyle(color: Color(0xFFFFFFFF), fontSize: 25),

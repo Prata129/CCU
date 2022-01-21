@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:revio/service/auth/authentication_service.dart';
+import 'package:revio/ui/homeScreen.dart';
 
 class LoginPage extends StatelessWidget {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
-
 
   @override
   Widget build(BuildContext context) {
@@ -17,10 +17,10 @@ class LoginPage extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(top: 60.0),
               child: Center(
-                child: Container( 
-                  width: MediaQuery.of(context).size.width,
-                  height:250,
-                  child: Image.asset('assets/images/Capturar.PNG')),
+                child: Container(
+                    width: MediaQuery.of(context).size.width,
+                    height: 250,
+                    child: Image.asset('assets/images/Capturar.PNG')),
               ),
             ),
             Padding(
@@ -32,7 +32,8 @@ class LoginPage extends StatelessWidget {
                 decoration: const InputDecoration(
                     filled: true,
                     fillColor: Color(0xFF737373),
-                    focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.white)),
+                    focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.white)),
                     labelText: 'Email',
                     labelStyle: TextStyle(color: Colors.white),
                     hintText: 'Enter valid email id as abc@gmail.com'),
@@ -49,7 +50,8 @@ class LoginPage extends StatelessWidget {
                 decoration: const InputDecoration(
                     filled: true,
                     fillColor: Color(0xFF737373),
-                    focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.white)),
+                    focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.white)),
                     labelText: 'Password',
                     labelStyle: TextStyle(color: Colors.white),
                     hintText: 'Enter secure password'),
@@ -60,13 +62,16 @@ class LoginPage extends StatelessWidget {
               height: 57,
               width: 152,
               decoration: BoxDecoration(
-                  color: const Color(0xFFE5BE58), borderRadius: BorderRadius.circular(10)),
+                  color: const Color(0xFFE5BE58),
+                  borderRadius: BorderRadius.circular(10)),
               child: TextButton(
                 onPressed: () {
-                  context.read<AuthenticationService>().signIn(
+                  /* context.read<AuthenticationService>().signIn(
                     email: emailController.text, 
                     password: passwordController.text.trim()
-                    );
+                    ); */
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => HomeScreen()));
                 },
                 child: const Text(
                   'Login',

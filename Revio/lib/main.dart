@@ -7,6 +7,7 @@ import 'package:revio/ui/auth/loginpage.dart';
 import 'package:revio/service/auth/authentication_service.dart';
 import 'package:revio/ui/settingsScreen.dart';
 import 'package:revio/ui/LibraryScreen.dart';
+import 'package:revio/ui/aboutScreen.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();

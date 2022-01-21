@@ -9,6 +9,7 @@ import 'package:revio/ui/paymentsScreen.dart';
 import 'package:revio/ui/settingsScreen.dart';
 import 'package:revio/ui/LibraryScreen.dart';
 import 'package:revio/ui/aboutScreen.dart';
+import 'package:revio/ui/eventsHomePage.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();

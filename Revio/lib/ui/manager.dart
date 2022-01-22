@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:revio/ui/libraryScreen.dart';
 import 'package:revio/ui/eventsHomePage.dart';
 import 'package:revio/ui/homeScreen.dart';
+import 'package:revio/ui/DiscoverScreen.dart';
 
 class Manager extends StatefulWidget {
   @override
@@ -11,9 +12,9 @@ class Manager extends StatefulWidget {
 }
 
 class _Manager extends State<Manager> {
-  int _currentIndex = 1;
+  int _currentIndex = 2;
   PageController pageController = PageController(
-    initialPage: 1,
+    initialPage: 2,
   );
   @override
   Widget build(BuildContext context) {
@@ -24,6 +25,7 @@ class _Manager extends State<Manager> {
             controller: pageController,
             children: [
               LibraryScreen(),
+              DiscoverScreen(),
               HomeScreen(),
               EventsHomePage(),
             ]),
@@ -39,10 +41,10 @@ class _Manager extends State<Manager> {
               icon: Icon(Icons.library_music),
               label: 'Library',
             ),
-            /* BottomNavigationBarItem(
+            BottomNavigationBarItem(
               icon: Icon(Icons.find_in_page),
               label: 'Discover',
-            ), */
+            ),
             BottomNavigationBarItem(
               icon: Icon(Icons.home),
               label: 'Home',

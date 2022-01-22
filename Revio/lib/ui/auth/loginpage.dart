@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:revio/service/auth/authentication_service.dart';
-import 'package:revio/ui/homeScreen.dart';
+import 'package:revio/ui/manager.dart';
 
 class LoginPage extends StatelessWidget {
   final TextEditingController emailController = TextEditingController();
@@ -71,7 +71,7 @@ class LoginPage extends StatelessWidget {
                     password: passwordController.text.trim()
                     ); */
                   Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => HomeScreen()));
+                      MaterialPageRoute(builder: (context) => Manager()));
                 },
                 child: const Text(
                   'Login',

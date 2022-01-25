@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:revio/models/artist_model.dart';
 import 'package:revio/models/user_model.dart';
+import 'package:revio/ui/profile/artist_item.dart';
 import 'package:revio/ui/profile/avatar.dart';
 import 'package:revio/data/user_repo.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -11,13 +13,43 @@ class ProfileView extends StatefulWidget {
 }
 
 class _ProfileViewState extends State<ProfileView> {
-  //late UserModel currentUser;
+   List<Artist> _artists = [];
+  final UserRepo _userRepo = UserRepo();
+  String _displayName = "Hello";
   List<Image> images = [
     Image.asset("assets/images/playlist1.png"),
     Image.asset("assets/images/playlist2.png"),
     Image.asset("assets/images/playlist3.png"),
   ];
   
+  List<Artist> _handleArtistLists(Artist artist) {
+    final index = _artists.indexWhere((element) => element.id == artist.id);
+    if (index == -1) {
+      //uhh new artist
+      _artists.add(artist);
+    } else {
+      //replace artist content
+      _artists[index] = artist;
+    }
+
+    //kinda sort by level
+    _artists.sort((a, b) => b.level.compareTo(a.level));
+    return _artists;
+
+  }
+  String getUsername() {
+    _userRepo.getUser().then((User user) {
+      setState(() {
+        _displayName = user.displayName;
+      });
+    });
+    return _displayName;
+  }
+
+  Stream<List<Artist>> getUserArtists() {
+    return _userRepo.getFanArtists().map((update) => _handleArtistLists(update));
+  }
+
   Widget myImage(int index) {
     int number = index+1;
     return Stack(
@@ -45,6 +77,7 @@ class _ProfileViewState extends State<ProfileView> {
       ]
     );
   }
+  
   @override 
   Widget build(BuildContext context) {
     return Scaffold(
@@ -60,7 +93,7 @@ class _ProfileViewState extends State<ProfileView> {
                 color: Color(0xFFC2C2C2)
               ),
               backgroundColor: const Color(0xFF222222),
-              title: Text("Username", style: const TextStyle(fontSize: 32.0, color: Color(0xFFC2C2C2))),
+              title: Text(getUsername(), style: const TextStyle(fontSize: 32.0, color: Color(0xFFC2C2C2))),
             elevation: 0,
         ),
       body: Column(
@@ -124,7 +157,32 @@ class _ProfileViewState extends State<ProfileView> {
                   fontSize: 28,
                   fontWeight: FontWeight.w400
                 ),
-            )
+            ),
+          ),
+          StreamBuilder<List<Artist>>(
+              stream: getUserArtists(),
+              builder: (context, snapshot) {
+                if (snapshot.hasData) {
+                  return Expanded(
+                    child: ListView.builder(
+                      keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
+                      physics: BouncingScrollPhysics(),
+                      reverse: true,
+                      itemCount: snapshot.data!.length,
+                      itemBuilder: (context, index) {
+                        return ArtistItem(artist: snapshot.data![index]);
+                      },
+                    ),
+                  );
+                }
+                return Expanded(
+                  child: Center(
+                    child: Text(
+                      "Go Listen to some artists."
+                    )
+                  )
+                );
+              }
           )
         ]
       )

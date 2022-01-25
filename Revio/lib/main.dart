@@ -9,13 +9,14 @@ import 'package:revio/ui/auth/login_model.dart';
 import 'package:revio/ui/auth/signup_model.dart';
 import 'package:revio/ui/auth/loginpage.dart';
 import 'package:revio/service/auth/authentication_service.dart';
-import 'package:revio/ui/profile_view.dart';
+import 'package:revio/ui/profile/profile_view.dart';
 import 'package:revio/ui/settingsScreen.dart';
 import 'package:revio/ui/LibraryScreen.dart';
 import 'package:revio/ui/aboutScreen.dart';
 import 'package:revio/ui/artist/addSongScreen.dart';
 import 'package:revio/ui/eventsHomePage.dart';
 import 'package:revio/ui/artistsYouLoveEvents.dart';
+import 'package:revio/ui/nosAliveEvent.dart';
 
 import 'data/song_repo.dart';
 import 'models/song_model.dart';
@@ -69,7 +70,7 @@ class AuthenticationWrapper extends StatelessWidget {
     final firebaseUser = context.watch<User?>();
 
     if (firebaseUser != null) {
-      return AddSongScreen();
+      return ProfileView();
     }
     return const LoginPage();
   }

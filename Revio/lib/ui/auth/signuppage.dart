@@ -5,7 +5,7 @@ import 'package:revio/service/auth/authentication_state.dart';
 import 'package:revio/ui/auth/auth_dialog.dart';
 import 'package:revio/ui/auth/signup_model.dart';
 import 'package:revio/ui/homepage.dart';
-import 'package:revio/ui/profile_view.dart';
+import 'package:revio/ui/profile/profile_view.dart';
 
 class SignUp extends StatefulWidget {
   const SignUp({Key? key}) : super(key: key);

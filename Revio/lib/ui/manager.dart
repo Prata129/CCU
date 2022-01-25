@@ -8,6 +8,7 @@ import 'package:revio/ui/eventsHomePage.dart';
 import 'package:revio/ui/homeScreen.dart';
 import 'package:revio/ui/DiscoverScreen.dart';
 import 'package:revio/ui/Profile_View.dart';
+import 'package:revio/ui/ArtistHomeScreen.dart';
 
 class Manager extends StatefulWidget {
   @override
@@ -60,7 +61,7 @@ class _Manager extends State<Manager> {
     return [
       LibraryScreen(),
       DiscoverScreen(),
-      HomeScreen(),
+      ArtistHomeScreen(),
       EventsHomePage(),
       ProfileView(),
     ];

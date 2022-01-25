@@ -7,18 +7,20 @@ class SongRepo {
   final CollectionReference _ref =
       FirebaseFirestore.instance.collection('songs');
 
-  Future<DocumentReference> saveSong(Model.Song song) async {
-    return await _ref.add(song.toMap());
+  Future<DocumentReference> saveSong(Map<String, dynamic> map) async {
+    return await _ref.add(map);
   }
 
-  Future<Model.Song> getSong(String name) async {
+  Future<Map<String, dynamic>> getSong(String name) async {
     final snapshot = await _ref.where('name', isEqualTo: name).get();
 
     final doc = snapshot.docs[0];
-    return Model.Song(
-        name: doc['name'],
-        description: doc['description'],
-        features: doc['features'],
-        path: doc['path']);
+    return {
+      'name': doc['name'],
+      'artist': doc['artist'],
+      'description': doc['description'],
+      'features': doc['features'],
+      'path': doc['path']
+    };
   }
 }

@@ -7,11 +7,19 @@ class SongService {
 
   SongService(this._songRepo);
 
-  void CreateSong(
-      String name, String description, String features, String path) async {
-    await _songRepo.saveSong(
-      Song(
-          name: name, description: description, features: features, path: path),
-    );
+  Map<String, dynamic> toMap(String name, String artist, String description,
+      String features, String path) {
+    return {
+      'name': name,
+      'artist': artist,
+      'description': description,
+      'features': features,
+      'path': path,
+    };
+  }
+
+  void CreateSong(String name, String artist, String description,
+      String features, String path) async {
+    await _songRepo.saveSong(toMap(name, artist, description, features, path));
   }
 }

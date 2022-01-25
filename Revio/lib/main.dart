@@ -18,6 +18,7 @@ import 'package:revio/ui/eventsHomePage.dart';
 import 'package:revio/ui/artistsYouLoveEvents.dart';
 
 import 'data/song_repo.dart';
+import 'models/song_model.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -38,6 +39,8 @@ class MyApp extends StatelessWidget {
       providers: [
         Provider<AuthenticationService>(create: (_) => authService),
         Provider<SongService>(create: (_) => songService),
+        ChangeNotifierProvider<Song>(
+            create: (_) => Song(songService: songService)),
         ChangeNotifierProvider<LoginModel>(
             create: (_) => LoginModel(authService: authService)),
         ChangeNotifierProvider<SignUpModel>(

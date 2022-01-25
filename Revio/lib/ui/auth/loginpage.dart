@@ -100,6 +100,7 @@ class _LoginPageState extends State<LoginPage> {
                       email: emailController.text, 
                       password: passwordController.text.trim()
                       ); */
+                    viewModel.loginUser();
                     Navigator.push(context,
                         MaterialPageRoute(builder: (context) => Manager()));
                   },

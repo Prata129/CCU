@@ -55,7 +55,7 @@ class _ProfileViewState extends State<ProfileView> {
     return Stack(
       children: <Widget>[
         Container(
-          width: 180,
+          width: 150,
           decoration: BoxDecoration(
           borderRadius: const BorderRadius.all(Radius.circular(12)),
           image: DecorationImage(image: images[index].image, fit: BoxFit.cover),
@@ -63,7 +63,7 @@ class _ProfileViewState extends State<ProfileView> {
         ),
         Center(
           child: Padding(
-            padding: EdgeInsets.only(top: 115, left: 55), 
+            padding: EdgeInsets.only(top: 115, left: 40), 
             child: Text(
               "Playlist $number",
               style: GoogleFonts.roboto(
@@ -123,12 +123,12 @@ class _ProfileViewState extends State<ProfileView> {
             ) 
           ),
           Padding( 
-            padding: EdgeInsets.only(top: 20, right: 250),
+            padding: EdgeInsets.only(top: 20, right: 250, bottom: 10),
             child: Text('Playlists',
               textAlign: TextAlign.left,
               style: GoogleFonts.roboto(
                   color: Colors.white,
-                  fontSize: 28,
+                  fontSize: 30,
                   fontWeight: FontWeight.w400
               )
             ),
@@ -137,7 +137,7 @@ class _ProfileViewState extends State<ProfileView> {
             child: new ListView.separated(
                 separatorBuilder: (BuildContext context, int index) {
                   return SizedBox(
-                  width: 10,
+                  width: 20,
                   );
                 },
                 shrinkWrap: true,
@@ -149,7 +149,7 @@ class _ProfileViewState extends State<ProfileView> {
               scrollDirection: Axis.horizontal,
             )
           ),
-          Padding(padding: const EdgeInsets.only(top: 10, bottom: 180),
+          Padding(padding: const EdgeInsets.only(top: 20, bottom: 10),
           child: Text(
                   "Favorite Artists",
                   style: GoogleFonts.roboto(
@@ -165,9 +165,6 @@ class _ProfileViewState extends State<ProfileView> {
                 if (snapshot.hasData) {
                   return Expanded(
                     child: ListView.builder(
-                      keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
-                      physics: BouncingScrollPhysics(),
-                      reverse: true,
                       itemCount: snapshot.data!.length,
                       itemBuilder: (context, index) {
                         return ArtistItem(artist: snapshot.data![index]);

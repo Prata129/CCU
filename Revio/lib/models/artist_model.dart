@@ -14,9 +14,9 @@ class Artist {
   });
 
   String getRankName() {
-    if (this.level == 1) return 'Rookie';
-    else if (this.level == 2) return 'Amateur';
-    else if (this.level == 3) return 'Pro';
+    if (level == 1) return 'Rookie';
+    else if (level == 2) return 'Amateur';
+    else if (level == 3) return 'Pro';
     return 'Unknown';
   }
 

@@ -34,16 +34,16 @@ class UserRepo {
     final doc = snapshot.docs[0];
 
     final subcollection = _ref.doc(doc.id).collection('artistas').snapshots();
-    
+
     await for (final snapshots in subcollection) {
         for (final changes in snapshots.docChanges) {
           yield Artist(
             id: changes.doc.id,
             name: changes.doc["nome"],
-            level: changes.doc["nivel"],
+            level: changes.doc["level"],
             timesListened: changes.doc["timesListened"]
           );
         }
-      }
+    }
   }
 }

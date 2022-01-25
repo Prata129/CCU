@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:revio/data/user_repo.dart';
 import 'package:revio/service/song/song_service.dart';
 import 'package:revio/service/user/user_creation_service.dart';
+import 'package:revio/ui/ArtistHomeScreen.dart';
 import 'package:revio/ui/auth/login_model.dart';
 import 'package:revio/ui/auth/signup_model.dart';
 import 'package:revio/ui/auth/loginpage.dart';
@@ -70,7 +71,7 @@ class AuthenticationWrapper extends StatelessWidget {
     final firebaseUser = context.watch<User?>();
 
     if (firebaseUser != null) {
-      return ProfileView();
+      return ArtistHomeScreen();
     }
     return const LoginPage();
   }

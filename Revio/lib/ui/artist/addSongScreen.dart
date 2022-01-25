@@ -6,6 +6,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:revio/ui/myMusic.dart';
 import 'package:revio/ui/widgets/button.dart';
 import '../api/firebase_api.dart';
 import 'package:revio/models/song_model.dart';
@@ -171,7 +172,13 @@ class _AddSongState extends State<AddSongScreen> {
                                       ButtonWidget(
                                         text: 'OK',
                                         color: const Color(0xFFE5BE58),
-                                        onClicked: () => empty(),
+                                        onClicked: () {
+                                          Navigator.push(
+                                              context,
+                                              MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      MyMusic()));
+                                        },
                                       ),
                                     ]))
                           ]),
@@ -214,8 +221,6 @@ class _AddSongState extends State<AddSongScreen> {
     task = FirebaseApi.uploadFile(destination, file!);
     setState(() {});
   }
-
-  void empty() {}
 
   Widget buildUploadStatus(UploadTask task) => StreamBuilder<TaskSnapshot>(
         stream: task.snapshotEvents,

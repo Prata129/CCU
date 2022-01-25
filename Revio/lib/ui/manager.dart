@@ -7,7 +7,7 @@ import 'package:revio/ui/libraryScreen.dart';
 import 'package:revio/ui/eventsHomePage.dart';
 import 'package:revio/ui/homeScreen.dart';
 import 'package:revio/ui/DiscoverScreen.dart';
-import 'package:revio/ui/Profile_View.dart';
+import 'package:revio/ui/profile/Profile_View.dart';
 import 'package:revio/ui/ArtistHomeScreen.dart';
 
 class Manager extends StatefulWidget {

@@ -3,6 +3,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import 'artist/addSongScreen.dart';
+
 class MyMusic extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -35,7 +37,12 @@ class MyMusic extends StatelessWidget {
                     color: Color.fromARGB(255, 229, 189, 88),
                     borderRadius: BorderRadius.circular(10)),
                 child: InkWell(
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => AddSongScreen()));
+                  },
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: <Widget>[

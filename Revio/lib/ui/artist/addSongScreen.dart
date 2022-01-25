@@ -3,8 +3,10 @@ import 'dart:io';
 import 'package:file_picker/file_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:revio/ui/widgets/button.dart';
-import 'api/firebase_api.dart';
+import '../api/firebase_api.dart';
+import 'package:revio/models/song_model.dart';
 import 'package:path/path.dart';
 
 class AddSongScreen extends StatefulWidget {
@@ -17,7 +19,7 @@ class _AddSongState extends State<AddSongScreen> {
   File? file;
 
   @override
-  Widget build(BuildContext context) {
+  Widget _songScreen(BuildContext context, Song viewModel) {
     final fileName = file != null ? basename(file!.path) : 'No File Selected';
 
     return Scaffold(
@@ -37,6 +39,20 @@ class _AddSongState extends State<AddSongScreen> {
                   style: TextStyle(fontSize: 32.0, color: Color(0xFFC2C2C2))),
               elevation: 0,
             ),
+            Container(
+                child: TextField(
+              style: const TextStyle(color: Colors.white),
+              obscureText: true,
+              decoration: const InputDecoration(
+                  filled: true,
+                  fillColor: Color(0xFFC2C2C2),
+                  focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.white)),
+                  labelText: 'Password',
+                  labelStyle: TextStyle(color: Colors.white),
+                  hintText: 'Enter secure password'),
+              onChanged: (value) => viewModel.name = value,
+            )),
             Container(
               padding: EdgeInsets.all(32),
               child: Center(
@@ -113,4 +129,13 @@ class _AddSongState extends State<AddSongScreen> {
           }
         },
       );
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Consumer<Song>(
+          builder: (context, viewModel, child) =>
+              _songScreen(context, viewModel)),
+    );
+  }
 }

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:provider/provider.dart';
 import 'package:revio/data/user_repo.dart';
+import 'package:revio/service/song/song_service.dart';
 import 'package:revio/service/user/user_creation_service.dart';
 import 'package:revio/ui/auth/login_model.dart';
 import 'package:revio/ui/auth/signup_model.dart';
@@ -12,9 +13,11 @@ import 'package:revio/ui/profile_view.dart';
 import 'package:revio/ui/settingsScreen.dart';
 import 'package:revio/ui/LibraryScreen.dart';
 import 'package:revio/ui/aboutScreen.dart';
-import 'package:revio/ui/addSongScreen.dart';
+import 'package:revio/ui/artist/addSongScreen.dart';
 import 'package:revio/ui/eventsHomePage.dart';
 import 'package:revio/ui/artistsYouLoveEvents.dart';
+
+import 'data/song_repo.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -29,9 +32,12 @@ class MyApp extends StatelessWidget {
     final authService = AuthenticationService(
         FirebaseAuth.instance, UserCreationService(UserRepo()));
 
+    final songService = SongService(SongRepo());
+
     return MultiProvider(
       providers: [
         Provider<AuthenticationService>(create: (_) => authService),
+        Provider<SongService>(create: (_) => songService),
         ChangeNotifierProvider<LoginModel>(
             create: (_) => LoginModel(authService: authService)),
         ChangeNotifierProvider<SignUpModel>(
@@ -60,7 +66,7 @@ class AuthenticationWrapper extends StatelessWidget {
     final firebaseUser = context.watch<User?>();
 
     if (firebaseUser != null) {
-      return SettingsScreen();
+      return AddSongScreen();
     }
     return const LoginPage();
   }

@@ -7,7 +7,7 @@ import 'package:revio/models/user_model.dart' as Model;
 //CAN BE REFACTORED IN THE FUTURE NOT IN THE MOOD RN
 
 class UserRepo {
-  final CollectionReference _ref = 
+  final CollectionReference _ref =
       FirebaseFirestore.instance.collection('user');
 
   Future<DocumentReference> saveUser(Model.User user) async {
@@ -25,7 +25,8 @@ class UserRepo {
       email: doc['email'],
       displayName: doc['displayName'],
       isArtist: doc['isArtist'],
-      avatarUrl: doc['avatarUrl']
+      avatarUrl: doc['avatarUrl'],
+      money: doc['money'],
     );
   }
 
@@ -56,14 +57,13 @@ class UserRepo {
     final subcollection = _ref.doc(doc.id).collection('artistas').snapshots();
 
     await for (final snapshots in subcollection) {
-        for (final changes in snapshots.docChanges) {
-          yield Artist(
+      for (final changes in snapshots.docChanges) {
+        yield Artist(
             id: changes.doc.id,
             name: changes.doc["nome"],
             level: changes.doc["level"],
-            timesListened: changes.doc["timesListened"]
-          );
-        }
+            timesListened: changes.doc["timesListened"]);
+      }
     }
   }
 }

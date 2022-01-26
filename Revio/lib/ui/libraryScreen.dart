@@ -12,8 +12,7 @@ class LibraryScreen extends StatelessWidget {
           child: Column(
             children: [
               AppBar(
-                leading: IconButton(
-                    icon: const Icon(Icons.arrow_back_ios), onPressed: () {}),
+                automaticallyImplyLeading: false,
                 iconTheme: IconThemeData(color: const Color(0xFFC2C2C2)),
                 backgroundColor: Color(0xFF222222),
                 title: const Text("Library",

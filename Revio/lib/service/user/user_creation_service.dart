@@ -31,7 +31,8 @@ class UserCreationService {
         email: email,
         displayName: displayName,
         isArtist: isArtist,
-        avatarUrl: ''
+        avatarUrl: '',
+        money: 50.55,
       ),
     );
   }

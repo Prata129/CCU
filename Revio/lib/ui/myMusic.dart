@@ -127,7 +127,7 @@ class MyMusic extends StatelessWidget {
           ),
         ),
         Container(
-          child: Text('Tap to submite songs\nto this playlist',
+          child: Text('Tap to submit songs\nto this playlist',
               textAlign: TextAlign.center,
               style: GoogleFonts.roboto(
                 color: Color.fromARGB(174, 255, 255, 255),

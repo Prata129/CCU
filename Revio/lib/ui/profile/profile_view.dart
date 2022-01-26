@@ -86,9 +86,9 @@ class _ProfileViewState extends State<ProfileView> {
               style: const TextStyle(fontSize: 32.0, color: Color(0xFFC2C2C2))),
           elevation: 0,
         ),
-        body: Column(
+        body: SingleChildScrollView(
+          child: Column(
             mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
               Container(
                   alignment: Alignment.center,
@@ -121,8 +121,9 @@ class _ProfileViewState extends State<ProfileView> {
                         fontSize: 30,
                         fontWeight: FontWeight.w400)),
               ),
-              Expanded(
-                  child: new ListView.separated(
+              SizedBox(
+                height: 200.0,
+                child: new ListView.separated(
                 separatorBuilder: (BuildContext context, int index) {
                   return SizedBox(
                     width: 20,
@@ -135,7 +136,8 @@ class _ProfileViewState extends State<ProfileView> {
                   return myImage(index);
                 },
                 scrollDirection: Axis.horizontal,
-              )),
+                )
+              ),
               Padding(
                 padding: const EdgeInsets.only(top: 20, bottom: 10),
                 child: Text(
@@ -150,19 +152,20 @@ class _ProfileViewState extends State<ProfileView> {
                   stream: getUserArtists(),
                   builder: (context, snapshot) {
                     if (snapshot.hasData) {
-                      return Expanded(
-                        child: ListView.builder(
+                      ListView.builder(
                           itemCount: snapshot.data!.length,
                           itemBuilder: (context, index) {
                             return ArtistItem(artist: snapshot.data![index]);
                           },
-                        ),
                       );
                     }
                     return Expanded(
                         child:
                             Center(child: Text("Go Listen to some artists.")));
                   })
-            ]));
+              ]
+          )
+        )
+    );
   }
 }

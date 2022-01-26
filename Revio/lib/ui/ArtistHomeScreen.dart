@@ -4,8 +4,28 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:revio/ui/settingsScreen.dart';
 import 'package:revio/ui/myMusic.dart';
+import 'package:revio/ui/myFans.dart';
+import 'package:revio/data/user_repo.dart';
+import 'package:revio/models/user_model.dart';
 
-class ArtistHomeScreen extends StatelessWidget {
+class ArtistHomeScreen extends StatefulWidget {
+  @override
+  _ArtistHomeScreen createState() => _ArtistHomeScreen();
+}
+
+class _ArtistHomeScreen extends State<ArtistHomeScreen> {
+  final UserRepo _userRepo = UserRepo();
+  double _money = 00.00;
+
+  double getUserMoney() {
+    _userRepo.getUser().then((User user) {
+      setState(() {
+        _money = user.money;
+      });
+    });
+    return _money;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -15,7 +35,7 @@ class ArtistHomeScreen extends StatelessWidget {
 //**************WELCOME BACK AND SSETTINGS********************
 
           Padding(
-            padding: const EdgeInsets.only(top: 60.0),
+            padding: const EdgeInsets.only(left: 15, top: 35.0),
             child: Row(children: [
               /* Align(
                 alignment: const AlignmentDirectional(0.7, -0.8),
@@ -23,10 +43,10 @@ class ArtistHomeScreen extends StatelessWidget {
               Container(
                 child: Text('Welcome Back, Zé',
                     textAlign: TextAlign.left,
-                    style: GoogleFonts.roboto(
-                        color: Colors.white,
-                        fontSize: 28,
-                        fontWeight: FontWeight.bold)),
+                    style: TextStyle(
+                      color: Color(0xFFC2C2C2),
+                      fontSize: 32,
+                    )),
               ),
               //),
               Expanded(
@@ -98,23 +118,23 @@ class ArtistHomeScreen extends StatelessWidget {
                             Expanded(
                               flex: 1,
                               child: Text(
-                                ' 563',
+                                ' ${getUserMoney()}',
                                 style: TextStyle(
                                     fontWeight: FontWeight.bold,
                                     fontSize: 48,
                                     color: Color.fromARGB(255, 0, 0, 0)),
                               ),
                             ),
-                            Expanded(
+                            /*  Expanded(
                               flex: 1,
                               child: Text(
-                                '.54',
+                                ' .${getUserMoney() % 1}',
                                 style: TextStyle(
                                     fontWeight: FontWeight.bold,
                                     fontSize: 18,
                                     color: Color.fromARGB(255, 0, 0, 0)),
                               ),
-                            ),
+                            ), */
                             Expanded(
                               flex: 1,
                               child: Container(
@@ -137,7 +157,7 @@ class ArtistHomeScreen extends StatelessWidget {
                         Expanded(
                           flex: 1,
                           child: Text(
-                            ' 153.73',
+                            ' ${getUserMoney() * 7 + 38}',
                             style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontSize: 14,
@@ -177,7 +197,6 @@ class ArtistHomeScreen extends StatelessWidget {
               child: Container(
                 width: 256,
                 height: 56,
-                //color: Color.fromARGB(255, 58, 169, 206),
                 decoration: BoxDecoration(
                     color: Color.fromARGB(255, 58, 169, 206),
                     borderRadius: BorderRadius.circular(10)),
@@ -247,7 +266,10 @@ class ArtistHomeScreen extends StatelessWidget {
                     color: Color.fromARGB(255, 83, 157, 109),
                     borderRadius: BorderRadius.circular(10)),
                 child: InkWell(
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => MyFans()));
+                  },
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: <Widget>[

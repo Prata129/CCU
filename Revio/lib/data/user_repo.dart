@@ -5,12 +5,13 @@ import 'package:revio/models/artist_model.dart';
 import 'package:revio/models/user_model.dart' as Model;
 
 class UserRepo {
-  final CollectionReference _ref = 
+  final CollectionReference _ref =
       FirebaseFirestore.instance.collection('user');
 
   Future<DocumentReference> saveUser(Model.User user) async {
     return await _ref.add(user.toMap());
   }
+
   Future<Model.User> getUser() async {
     final snapshot = await _ref
         .where('email', isEqualTo: FirebaseAuth.instance.currentUser!.email)
@@ -22,8 +23,28 @@ class UserRepo {
       email: doc['email'],
       displayName: doc['displayName'],
       isArtist: doc['isArtist'],
-      avatarUrl: doc['avatarUrl']
+      avatarUrl: doc['avatarUrl'],
+      money: doc['money'],
     );
+  }
+
+  void changeFunds(double amount) async {
+    final snapshot = await _ref
+        .where('email', isEqualTo: FirebaseAuth.instance.currentUser!.email)
+        .get();
+
+    final doc = snapshot.docs[0]; //bad idea?
+
+    Model.User user = Model.User(
+      id: doc.id,
+      email: doc['email'],
+      displayName: doc['displayName'],
+      isArtist: doc['isArtist'],
+      avatarUrl: doc['avatarUrl'],
+      money: doc['money'],
+    );
+
+    user.money += amount;
   }
 
   Stream<Artist> getFanArtists() async* {
@@ -36,14 +57,13 @@ class UserRepo {
     final subcollection = _ref.doc(doc.id).collection('artistas').snapshots();
 
     await for (final snapshots in subcollection) {
-        for (final changes in snapshots.docChanges) {
-          yield Artist(
+      for (final changes in snapshots.docChanges) {
+        yield Artist(
             id: changes.doc.id,
             name: changes.doc["nome"],
             level: changes.doc["level"],
-            timesListened: changes.doc["timesListened"]
-          );
-        }
+            timesListened: changes.doc["timesListened"]);
+      }
     }
   }
 }

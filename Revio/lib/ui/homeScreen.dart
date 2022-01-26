@@ -48,32 +48,120 @@ class HomeScreen extends StatelessWidget {
               ),
             ]),
           ),
-          Row(
-            children: [
-              Padding(
-                  padding: const EdgeInsets.only(top: 60.0),
-                  child: Row(children: [
-                    Container(
-                      //margin: const EdgeInsets.only(top: 60, bottom: 30),
-                      height: 158,
-                      width: 305,
-                      decoration: BoxDecoration(
-                          color: Color.fromARGB(214, 196, 196, 196),
-                          borderRadius: BorderRadius.circular(10)),
-                      child: TextButton(
-                        onPressed: () {},
-                        //allignment: Algnment.topRight
-                        child: Text('Crypto Stats',
-                            textAlign: TextAlign.center,
-                            style: GoogleFonts.roboto(
-                                color: Colors.black,
-                                fontSize: 28,
-                                fontWeight: FontWeight.bold)),
-                      ),
-                    ),
-                  ])),
-            ],
-          ),
+          Row(mainAxisAlignment: MainAxisAlignment.start, children: [
+            Padding(
+              padding: const EdgeInsets.only(top: 25),
+              child: Container(
+                width: 291,
+                height: 133,
+                //color: Color.fromARGB(255, 58, 169, 206),
+                decoration: BoxDecoration(
+                    color: Color.fromARGB(214, 196, 196, 196),
+                    borderRadius: BorderRadius.circular(10)),
+                child: InkWell(
+                  onTap: () {},
+                  child: Column(
+                    children: [
+                      Row(children: [
+                        Expanded(
+                          flex: 1,
+                          child: Text(
+                            '  Stats',
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 24,
+                                color: Color.fromARGB(255, 0, 0, 0)),
+                          ),
+                        )
+                      ]),
+                      Row(children: [
+                        Expanded(
+                          flex: 1,
+                          child: Text(
+                            '    My Crypto Earnings:',
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 14,
+                                color: Color.fromARGB(255, 0, 0, 0)),
+                          ),
+                        )
+                      ]),
+                      Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Expanded(
+                              flex: 1,
+                              child: Text(
+                                ' 563',
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 48,
+                                    color: Color.fromARGB(255, 0, 0, 0)),
+                              ),
+                            ),
+                            Expanded(
+                              flex: 1,
+                              child: Text(
+                                '.54',
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 18,
+                                    color: Color.fromARGB(255, 0, 0, 0)),
+                              ),
+                            ),
+                            Expanded(
+                              flex: 1,
+                              child: Container(
+                                height: 40,
+                                width: 40,
+                                decoration: BoxDecoration(
+                                  image: const DecorationImage(
+                                    fit: BoxFit.contain,
+                                    alignment: Alignment.centerLeft,
+                                    image: AssetImage(
+                                      'assets/images/cryptoCoin.png',
+                                    ),
+                                  ),
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
+                              ),
+                            ),
+                          ]),
+                      Row(children: [
+                        Expanded(
+                          flex: 1,
+                          child: Text(
+                            ' 153.73',
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 14,
+                                color: Color.fromARGB(255, 0, 0, 0)),
+                          ),
+                        ),
+                        Expanded(
+                          flex: 1,
+                          child: Container(
+                            height: 10,
+                            width: 10,
+                            decoration: BoxDecoration(
+                              image: const DecorationImage(
+                                fit: BoxFit.contain,
+                                alignment: Alignment.bottomLeft,
+                                image: AssetImage(
+                                  'assets/images/euro.png',
+                                ),
+                              ),
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                          ),
+                        ),
+                      ]),
+                    ],
+                  ),
+                ),
+              ),
+            )
+          ]),
           Padding(
             padding: const EdgeInsets.only(top: 40.0),
             child: Row(children: [
@@ -153,62 +241,6 @@ class HomeScreen extends StatelessWidget {
                       )
                     ],
                   ),
-
-                  /* Column(
-                    children: [
-                      Padding(
-                          padding: const EdgeInsets.only(bottom: 20),
-                          child: SizedBox(
-                              width: 140,
-                              height: 140,
-                              child: Stack(children: <Widget>[
-                                Container(
-                                  decoration: BoxDecoration(
-                                    image: const DecorationImage(
-                                      fit: BoxFit.fill,
-                                      image: AssetImage(
-                                        'assets/images/playlist1.png',
-                                      ),
-                                    ),
-                                    borderRadius: BorderRadius.circular(10),
-                                  ),
-                                ),
-                                Container(
-                                  decoration: BoxDecoration(
-                                    gradient: LinearGradient(
-                                        begin: FractionalOffset.topCenter,
-                                        end: FractionalOffset.bottomCenter,
-                                        colors: [
-                                          Colors.black.withOpacity(0),
-                                          Colors.black,
-                                        ],
-                                        stops: const [
-                                          0,
-                                          1
-                                        ]),
-                                    borderRadius: BorderRadius.circular(10),
-                                  ),
-                                ),
-                                Container(
-                                  child: const Align(
-                                    alignment: Alignment
-                                        .bottomCenter, // Align however you like (i.e .centerRight, centerLeft)
-                                    child: Padding(
-                                      padding: EdgeInsets.all(5),
-                                      child: Text(
-                                        'Playlist 1',
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 18,
-                                            color: Colors.white),
-                                      ),
-                                    ),
-                                  ),
-                                )
-                              ]))),
-                    ],
-                  ),
-                */
                 ]),
               ),
             ],

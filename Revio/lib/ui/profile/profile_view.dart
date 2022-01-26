@@ -7,13 +7,12 @@ import 'package:revio/data/user_repo.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class ProfileView extends StatefulWidget {
-
-  @override 
+  @override
   _ProfileViewState createState() => _ProfileViewState();
 }
 
 class _ProfileViewState extends State<ProfileView> {
-   List<Artist> _artists = [];
+  List<Artist> _artists = [];
   final UserRepo _userRepo = UserRepo();
   String _displayName = "Hello";
   List<Image> images = [
@@ -21,7 +20,7 @@ class _ProfileViewState extends State<ProfileView> {
     Image.asset("assets/images/playlist2.png"),
     Image.asset("assets/images/playlist3.png"),
   ];
-  
+
   List<Artist> _handleArtistLists(Artist artist) {
     final index = _artists.indexWhere((element) => element.id == artist.id);
     if (index == -1) {
@@ -35,8 +34,8 @@ class _ProfileViewState extends State<ProfileView> {
     //kinda sort by level
     _artists.sort((a, b) => b.level.compareTo(a.level));
     return _artists;
-
   }
+
   String getUsername() {
     _userRepo.getUser().then((User user) {
       setState(() {
@@ -47,97 +46,86 @@ class _ProfileViewState extends State<ProfileView> {
   }
 
   Stream<List<Artist>> getUserArtists() {
-    return _userRepo.getFanArtists().map((update) => _handleArtistLists(update));
+    return _userRepo
+        .getFanArtists()
+        .map((update) => _handleArtistLists(update));
   }
 
   Widget myImage(int index) {
-    int number = index+1;
-    return Stack(
-      children: <Widget>[
-        Container(
-          width: 150,
-          decoration: BoxDecoration(
+    int number = index + 1;
+    return Stack(children: <Widget>[
+      Container(
+        width: 150,
+        decoration: BoxDecoration(
           borderRadius: const BorderRadius.all(Radius.circular(12)),
           image: DecorationImage(image: images[index].image, fit: BoxFit.cover),
-          ),
         ),
-        Center(
+      ),
+      Center(
           child: Padding(
-            padding: EdgeInsets.only(top: 115, left: 40), 
-            child: Text(
-              "Playlist $number",
-              style: GoogleFonts.roboto(
-              color: Colors.white,
-              fontSize: 17,
-              fontWeight: FontWeight.bold
-              ),
-            )
-          )
-        )
-      ]
-    );
+              padding: EdgeInsets.only(top: 115, left: 40),
+              child: Text(
+                "Playlist $number",
+                style: GoogleFonts.roboto(
+                    color: Colors.white,
+                    fontSize: 17,
+                    fontWeight: FontWeight.bold),
+              )))
+    ]);
   }
-  
-  @override 
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFF222222),
-      appBar: 
-        AppBar(
-              leading: IconButton(icon: Icon(Icons.arrow_back_ios), 
-              onPressed: (){
-                //TODO GO BACK
-              }
-              ),
-              iconTheme: const IconThemeData(
-                color: Color(0xFFC2C2C2)
-              ),
-              backgroundColor: const Color(0xFF222222),
-              title: Text(getUsername(), style: const TextStyle(fontSize: 32.0, color: Color(0xFFC2C2C2))),
-            elevation: 0,
+        backgroundColor: const Color(0xFF222222),
+        appBar: AppBar(
+          automaticallyImplyLeading: false,
+          iconTheme: const IconThemeData(color: Color(0xFFC2C2C2)),
+          backgroundColor: const Color(0xFF222222),
+          title: Text(getUsername(),
+              style: const TextStyle(fontSize: 32.0, color: Color(0xFFC2C2C2))),
+          elevation: 0,
         ),
-      body: Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: <Widget>[
-          Container(
-            alignment: Alignment.center,
-            padding: const EdgeInsets.only(top: 40, right: 200),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: const <Widget>[
-                CircleAvatar( 
-                  radius: 65.0, 
-                  backgroundColor: Color(0xFFE5E5E5),
-                  child:  CircleAvatar(
-                    radius: 63.0,
-                    backgroundImage: AssetImage('assets/images/adele25.jpg')
-                    ,)
-                  ,)
-                //Avatar(
-                 // avatarUrl: currentUser.avatarUrl,
-                //  onTap: () {
-                  //TODO TAP TO CHANGE PHOTO
-                //})
-              ],
-            ) 
-          ),
-          Padding( 
-            padding: EdgeInsets.only(top: 20, right: 250, bottom: 10),
-            child: Text('Playlists',
-              textAlign: TextAlign.left,
-              style: GoogleFonts.roboto(
-                  color: Colors.white,
-                  fontSize: 30,
-                  fontWeight: FontWeight.w400
-              )
-            ),
-          ),
-          Expanded(
-            child: new ListView.separated(
+        body: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: <Widget>[
+              Container(
+                  alignment: Alignment.center,
+                  padding: const EdgeInsets.only(top: 40, right: 200),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: const <Widget>[
+                      CircleAvatar(
+                        radius: 65.0,
+                        backgroundColor: Color(0xFFE5E5E5),
+                        child: CircleAvatar(
+                          radius: 63.0,
+                          backgroundImage:
+                              AssetImage('assets/images/adele25.jpg'),
+                        ),
+                      )
+                      //Avatar(
+                      // avatarUrl: currentUser.avatarUrl,
+                      //  onTap: () {
+                      //TODO TAP TO CHANGE PHOTO
+                      //})
+                    ],
+                  )),
+              Padding(
+                padding: EdgeInsets.only(top: 20, right: 250, bottom: 10),
+                child: Text('Playlists',
+                    textAlign: TextAlign.left,
+                    style: GoogleFonts.roboto(
+                        color: Colors.white,
+                        fontSize: 30,
+                        fontWeight: FontWeight.w400)),
+              ),
+              Expanded(
+                  child: new ListView.separated(
                 separatorBuilder: (BuildContext context, int index) {
                   return SizedBox(
-                  width: 20,
+                    width: 20,
                   );
                 },
                 shrinkWrap: true,
@@ -146,43 +134,35 @@ class _ProfileViewState extends State<ProfileView> {
                 itemBuilder: (BuildContext context, int index) {
                   return myImage(index);
                 },
-              scrollDirection: Axis.horizontal,
-            )
-          ),
-          Padding(padding: const EdgeInsets.only(top: 20, bottom: 10),
-          child: Text(
+                scrollDirection: Axis.horizontal,
+              )),
+              Padding(
+                padding: const EdgeInsets.only(top: 20, bottom: 10),
+                child: Text(
                   "Favorite Artists",
                   style: GoogleFonts.roboto(
-                  color: Colors.white,
-                  fontSize: 28,
-                  fontWeight: FontWeight.w400
+                      color: Colors.white,
+                      fontSize: 28,
+                      fontWeight: FontWeight.w400),
                 ),
-            ),
-          ),
-          StreamBuilder<List<Artist>>(
-              stream: getUserArtists(),
-              builder: (context, snapshot) {
-                if (snapshot.hasData) {
-                  return Expanded(
-                    child: ListView.builder(
-                      itemCount: snapshot.data!.length,
-                      itemBuilder: (context, index) {
-                        return ArtistItem(artist: snapshot.data![index]);
-                      },
-                    ),
-                  );
-                }
-                return Expanded(
-                  child: Center(
-                    child: Text(
-                      "Go Listen to some artists."
-                    )
-                  )
-                );
-              }
-          )
-        ]
-      )
-    );
+              ),
+              StreamBuilder<List<Artist>>(
+                  stream: getUserArtists(),
+                  builder: (context, snapshot) {
+                    if (snapshot.hasData) {
+                      return Expanded(
+                        child: ListView.builder(
+                          itemCount: snapshot.data!.length,
+                          itemBuilder: (context, index) {
+                            return ArtistItem(artist: snapshot.data![index]);
+                          },
+                        ),
+                      );
+                    }
+                    return Expanded(
+                        child:
+                            Center(child: Text("Go Listen to some artists.")));
+                  })
+            ]));
   }
 }

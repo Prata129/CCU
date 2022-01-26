@@ -5,16 +5,16 @@ import 'package:cupertino_icons/cupertino_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:revio/ui/libraryScreen.dart';
 import 'package:revio/ui/eventsHomePage.dart';
-import 'package:revio/ui/homeScreen.dart';
 import 'package:revio/ui/DiscoverScreen.dart';
 import 'package:revio/ui/profile/profile_view.dart';
+import 'package:revio/ui/ArtistHomeScreen.dart';
 
-class Manager extends StatefulWidget {
+class ArtistManager extends StatefulWidget {
   @override
-  _Manager createState() => _Manager();
+  _ArtistManager createState() => _ArtistManager();
 }
 
-class _Manager extends State<Manager> {
+class _ArtistManager extends State<ArtistManager> {
   PersistentTabController _controller =
       PersistentTabController(initialIndex: 2);
   @override
@@ -59,7 +59,7 @@ class _Manager extends State<Manager> {
     return [
       LibraryScreen(),
       DiscoverScreen(),
-      HomeScreen(),
+      ArtistHomeScreen(),
       EventsHomePage(),
       ProfileView(),
     ];

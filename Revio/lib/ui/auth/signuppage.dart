@@ -6,18 +6,20 @@ import 'package:revio/ui/auth/auth_dialog.dart';
 import 'package:revio/ui/auth/signup_model.dart';
 import 'package:revio/ui/homepage.dart';
 import 'package:revio/ui/profile/profile_view.dart';
+import 'package:revio/ui/manager.dart';
+import 'package:revio/ui/artistManager.dart';
 
 class SignUp extends StatefulWidget {
   const SignUp({Key? key}) : super(key: key);
-  
-  @override 
+
+  @override
   _SignUpState createState() => _SignUpState();
 }
 
 class _SignUpState extends State<SignUp> {
-  bool? valuefirst = false;  
-  
-  @override 
+  bool? valuefirst = false;
+
+  @override
   void initState() {
     final vm = Provider.of<SignUpModel>(context, listen: false);
     vm.resetState();
@@ -30,12 +32,17 @@ class _SignUpState extends State<SignUp> {
     }
 
     if (viewModel.state!.authStatus == AuthStatus.authed) {
-      WidgetsBinding.instance!.addPostFrameCallback((_) { 
-        Navigator.push(
-          context, 
-          MaterialPageRoute(builder: (context) => ProfileView())
-        );
-      });
+      if (viewModel.isArtist == true) {
+        WidgetsBinding.instance!.addPostFrameCallback((_) {
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => ArtistManager()));
+        });
+      } else {
+        WidgetsBinding.instance!.addPostFrameCallback((_) {
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => Manager()));
+        });
+      }
     }
 
     if (viewModel.state!.authStatus == AuthStatus.error) {
@@ -88,7 +95,8 @@ class _SignUpState extends State<SignUp> {
           ),
           SizedBox(height: 16),
           TextFormField(
-            controller: TextEditingController()..text = viewModel.confirmedPassword,
+            controller: TextEditingController()
+              ..text = viewModel.confirmedPassword,
             obscureText: true,
             validator: (value) {
               return viewModel.validatePasswordMatch(value!);
@@ -112,21 +120,24 @@ class _SignUpState extends State<SignUp> {
                 labelText: 'Enter your username'),
           ),
           Row(
-            children: <Widget>[  
-              SizedBox(width: 10),  
-                    Text('Are you an artist?',style: TextStyle(fontSize: 17.0), ),  
-                    Checkbox(  
-                      checkColor: Colors.greenAccent,  
-                      activeColor: Colors.red,  
-                      value: this.valuefirst,  
-                      onChanged: (bool? value) {  
-                        setState(() {  
-                          viewModel.validateArtist(value);
-                          this.valuefirst = value; 
-                  });  
-                },  
-              ),  
-            ],  
+            children: <Widget>[
+              SizedBox(width: 10),
+              Text(
+                'Are you an artist?',
+                style: TextStyle(fontSize: 17.0),
+              ),
+              Checkbox(
+                checkColor: Colors.greenAccent,
+                activeColor: Colors.red,
+                value: this.valuefirst,
+                onChanged: (bool? value) {
+                  setState(() {
+                    viewModel.validateArtist(value);
+                    this.valuefirst = value;
+                  });
+                },
+              ),
+            ],
           ),
           SizedBox(height: 16),
           SizedBox(
@@ -148,10 +159,9 @@ class _SignUpState extends State<SignUp> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text("Hi")
-      ),
-      body: Consumer<SignUpModel>(
-        builder: (context, viewModel, child) =>
-          _authScreen(context, viewModel)));
+        appBar: AppBar(title: Text("Hi")),
+        body: Consumer<SignUpModel>(
+            builder: (context, viewModel, child) =>
+                _authScreen(context, viewModel)));
   }
 }

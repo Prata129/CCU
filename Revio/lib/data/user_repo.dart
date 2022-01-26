@@ -4,6 +4,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:revio/models/artist_model.dart';
 import 'package:revio/models/user_model.dart' as Model;
 
+//CAN BE REFACTORED IN THE FUTURE NOT IN THE MOOD RN
+
 class UserRepo {
   final CollectionReference _ref = 
       FirebaseFirestore.instance.collection('user');
@@ -11,6 +13,7 @@ class UserRepo {
   Future<DocumentReference> saveUser(Model.User user) async {
     return await _ref.add(user.toMap());
   }
+
   Future<Model.User> getUser() async {
     final snapshot = await _ref
         .where('email', isEqualTo: FirebaseAuth.instance.currentUser!.email)
@@ -24,6 +27,23 @@ class UserRepo {
       isArtist: doc['isArtist'],
       avatarUrl: doc['avatarUrl']
     );
+  }
+
+  Future<CollectionReference<Map<String, dynamic>>> getArtistsSubCollection() async {
+    final snapshot = await _ref
+        .where('email', isEqualTo: FirebaseAuth.instance.currentUser!.email)
+        .get();
+
+    final doc = snapshot.docs[0];
+
+    return _ref.doc(doc.id).collection('artistas');
+  }
+  void incrementTimesListened(String artistName) async {
+    getArtistsSubCollection().then((subCollection) => subCollection.doc(artistName).update({'timesListened': FieldValue.increment(1)}));
+  }
+
+  Future<DocumentReference> addArtist(Artist artist) async {
+    return await getArtistsSubCollection().then((subCollection) => subCollection.add(artist.toMap()));
   }
 
   Stream<Artist> getFanArtists() async* {

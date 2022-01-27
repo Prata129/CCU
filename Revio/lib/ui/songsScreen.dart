@@ -11,8 +11,14 @@ class SongsPage extends StatelessWidget {
   List<Song> _songs = [];
   
   List<Song> _handleSongLists(Song song) {
-    _songs.add(song); //yolo
-
+    final index = _songs.indexWhere((element) => element.id == song.id);
+    if (index == -1) {
+      //uhh new song
+      _songs.add(song);
+    } else {
+      //replace song content
+      _songs[index] = song;
+    }
     return _songs;
   }
   Stream<List<Song>> getSongs() {
@@ -27,13 +33,17 @@ class SongsPage extends StatelessWidget {
             StreamBuilder<List<Song>>(
               stream: getSongs(),
               builder: (context, snapshot) {
+              if (snapshot.hasData) {
                 return Flexible(
                   child: ListView.builder(
+                    itemCount: snapshot.data!.length,
                     itemBuilder: (context, index) {
                       return SongItem(song: snapshot.data![index]);
                     }
                   )
                 );
+              }
+              return Expanded(child: Text("nothing to show here"));
               },
             )
           ],

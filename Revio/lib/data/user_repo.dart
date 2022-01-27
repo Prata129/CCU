@@ -77,20 +77,15 @@ class UserRepo {
 
     final doc = snapshot.docs[0];
 
-    final subcollection =
-        _ref.doc(doc.id).collection('generoArtistas').snapshots();
-
-    await for (final snapshots in subcollection) {
-      for (final changes in snapshots.docChanges) {
-        yield Model.User(
-          id: changes.doc.id,
-          email: changes.doc["email"],
-          displayName: changes.doc["nome"],
-          isArtist: changes.doc["isArtist"],
-          avatarUrl: changes.doc["avatarUrl"],
-          genre: changes.doc["genre"],
-        );
-      }
+    for (final changes in snapshot.docChanges) {
+      yield Model.User(
+        id: changes.doc.id,
+        email: changes.doc["email"],
+        displayName: changes.doc["displayName"],
+        isArtist: changes.doc["isArtist"],
+        avatarUrl: changes.doc["avatarUrl"],
+        genre: changes.doc["genre"],
+      );
     }
   }
 }

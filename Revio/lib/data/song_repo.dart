@@ -34,7 +34,7 @@ class SongRepo {
           artist: docs.doc["artist"], 
           description: docs.doc["description"], 
           features: docs.doc["features"], 
-          name: docs.doc["features"]);
+          name: docs.doc["name"]);
       }
     }
   }

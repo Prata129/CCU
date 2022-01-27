@@ -92,7 +92,8 @@ class _ProfileViewState extends State<ProfileView> {
           elevation: 0,
         ),
 
-        body: Column(
+        body: SingleChildScrollView( physics: ScrollPhysics(),
+        child: Column(
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
@@ -157,8 +158,10 @@ class _ProfileViewState extends State<ProfileView> {
                   stream: getUserArtists(),
                   builder: (context, snapshot) {
                     if (snapshot.hasData) {
-                      return Expanded(
+                      return Flexible(
                         child: ListView.builder(
+                          physics: const NeverScrollableScrollPhysics(),
+                          shrinkWrap: true,
                           itemCount: snapshot.data!.length,
                           itemBuilder: (context, index) {
                             return ArtistItem(artist: snapshot.data![index]);
@@ -166,10 +169,10 @@ class _ProfileViewState extends State<ProfileView> {
                         ),
                       );
                     }
-                    return Expanded(
+                    return Flexible(
                         child:
                             Center(child: Text("Go Listen to some artists.")));
                   })
-            ]));
+            ])));
   }
 }

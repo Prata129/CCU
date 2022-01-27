@@ -24,6 +24,7 @@ class SongsPage extends StatelessWidget {
   Stream<List<Song>> getSongs() {
     return _songRepo.getAllSongs().map((song) => _handleSongLists(song));
   }
+
   @override 
   Widget build(BuildContext context) {
     return Scaffold(         
@@ -36,7 +37,6 @@ class SongsPage extends StatelessWidget {
               style: const TextStyle(fontSize: 32.0, color: Color(0xFFC2C2C2))),
           elevation: 0,
         ),
-
       body: Column(
           children: [
             StreamBuilder<List<Song>>(
@@ -47,7 +47,12 @@ class SongsPage extends StatelessWidget {
                   child: ListView.builder(
                     itemCount: snapshot.data!.length,
                     itemBuilder: (context, index) {
-                      return SongItem(song: snapshot.data![index]);
+                      return GestureDetector( 
+                        child: SongItem(song: snapshot.data![index]),
+                        onTap: () {
+                          print(snapshot.data![index].name);
+                        }
+                      );
                     }
                   )
                 );

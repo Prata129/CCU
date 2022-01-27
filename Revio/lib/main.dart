@@ -11,7 +11,6 @@ import 'package:revio/ui/auth/signup_model.dart';
 import 'package:revio/ui/auth/loginpage.dart';
 import 'package:revio/service/auth/authentication_service.dart';
 import 'package:revio/ui/homeScreen.dart';
-import 'package:revio/ui/homepage.dart';
 import 'package:revio/ui/profile/profile_view.dart';
 import 'package:revio/ui/settingsScreen.dart';
 import 'package:revio/ui/LibraryScreen.dart';
@@ -20,6 +19,7 @@ import 'package:revio/ui/artist/addSongScreen.dart';
 import 'package:revio/ui/eventsHomePage.dart';
 import 'package:revio/ui/artistsYouLoveEvents.dart';
 import 'package:revio/ui/nosAliveEvent.dart';
+import 'package:revio/ui/smartContract.dart';
 import 'package:revio/ui/songsScreen.dart';
 
 import 'data/song_repo.dart';
@@ -56,6 +56,7 @@ class MyApp extends StatelessWidget {
         )
       ],
       child: MaterialApp(
+        debugShowCheckedModeBanner: false,
         title: 'RevioDemo',
         routes: {
           "/login": (_) => new LoginPage(),
@@ -74,7 +75,7 @@ class AuthenticationWrapper extends StatelessWidget {
     final firebaseUser = context.watch<User?>();
 
     if (firebaseUser != null) {
-      return ProfileView();
+      return HomePage();
     }
     return const LoginPage();
   }

@@ -26,10 +26,12 @@ class UserRepo {
       displayName: doc['displayName'],
       isArtist: doc['isArtist'],
       avatarUrl: doc['avatarUrl'],
+      genre: doc['genre'],
     );
   }
 
-  Future<CollectionReference<Map<String, dynamic>>> getArtistsSubCollection() async {
+  Future<CollectionReference<Map<String, dynamic>>>
+      getArtistsSubCollection() async {
     final snapshot = await _ref
         .where('email', isEqualTo: FirebaseAuth.instance.currentUser!.email)
         .get();
@@ -38,12 +40,16 @@ class UserRepo {
 
     return _ref.doc(doc.id).collection('artistas');
   }
+
   void incrementTimesListened(String artistName) async {
-    getArtistsSubCollection().then((subCollection) => subCollection.doc(artistName).update({'timesListened': FieldValue.increment(1)}));
+    getArtistsSubCollection().then((subCollection) => subCollection
+        .doc(artistName)
+        .update({'timesListened': FieldValue.increment(1)}));
   }
 
   Future<DocumentReference> addArtist(Artist artist) async {
-    return await getArtistsSubCollection().then((subCollection) => subCollection.add(artist.toMap()));
+    return await getArtistsSubCollection()
+        .then((subCollection) => subCollection.add(artist.toMap()));
   }
 
   Stream<Artist> getFanArtists() async* {
@@ -63,6 +69,23 @@ class UserRepo {
             level: changes.doc["level"],
             timesListened: changes.doc["timesListened"]);
       }
+    }
+  }
+
+  Stream<Model.User> getGenreArtists(String genre) async* {
+    final snapshot = await _ref.where('genre', isEqualTo: genre).get();
+
+    final doc = snapshot.docs[0];
+
+    for (final changes in snapshot.docChanges) {
+      yield Model.User(
+        id: changes.doc.id,
+        email: changes.doc["email"],
+        displayName: changes.doc["displayName"],
+        isArtist: changes.doc["isArtist"],
+        avatarUrl: changes.doc["avatarUrl"],
+        genre: changes.doc["genre"],
+      );
     }
   }
 }

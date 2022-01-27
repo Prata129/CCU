@@ -73,9 +73,7 @@ class _ProfileViewState extends State<ProfileView> {
                     color: Colors.white,
                     fontSize: 17,
                     fontWeight: FontWeight.bold),
-              )
-            )
-      )
+              )))
     ]);
   }
 

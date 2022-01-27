@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:revio/service/auth/authentication_service.dart';
 import 'package:revio/service/auth/authentication_state.dart';
 import 'package:revio/ui/auth/login_model.dart';
+import 'package:revio/ui/buyNosAlive.dart';
 import 'package:revio/ui/manager.dart';
 import 'package:revio/ui/auth/signuppage.dart';
 
@@ -102,7 +103,7 @@ class _LoginPageState extends State<LoginPage> {
                       ); */
                     viewModel.loginUser();
                     Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => Manager()));
+                        MaterialPageRoute(builder: (context) => /*Manager()*/ BuyNosAlive()));
                   },
                   child: const Text(
                     'Login',

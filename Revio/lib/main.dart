@@ -21,6 +21,7 @@ import 'package:revio/ui/eventsHomePage.dart';
 import 'package:revio/ui/artistsYouLoveEvents.dart';
 import 'package:revio/ui/nosAliveEvent.dart';
 import 'package:revio/ui/songsScreen.dart';
+import 'package:revio/ui/buyNosAlive.dart';
 
 import 'data/song_repo.dart';
 import 'models/song_model.dart';

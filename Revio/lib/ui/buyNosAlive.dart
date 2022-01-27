@@ -1,8 +1,74 @@
 import 'package:flutter/material.dart';
+import 'package:revio/ui/nosAliveEvent.dart';
 
 const double SQUARE_SIZE = 137;
 
 class BuyNosAlive extends StatelessWidget {
+  
+  Widget _buildPopupDialog(BuildContext context) {
+    return AlertDialog(
+      content: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: const <Widget>[
+          Text(
+            'Ticket Purchase Finished',
+            style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 20,
+                color: Color.fromARGB(255, 0, 0, 0)),
+          ),
+        ],
+      ),
+
+      actions: <Widget>[
+        FlatButton(
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+            textColor: Theme.of(context).primaryColor,
+            child: Padding(
+              padding: EdgeInsets.only(right: 40),
+              child: Container(
+                width: 141,
+                height: 56,
+                //color: Color.fromARGB(255, 58, 169, 206),
+                decoration: BoxDecoration(
+                    color: Color.fromARGB(255, 229, 189, 88),
+                    borderRadius: BorderRadius.circular(20)),
+                child: InkWell(
+                  onTap: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => NosAliveEvent()));
+                  },
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: const <Widget>[
+                      Expanded(
+                        flex: 1,
+                        child: Text(
+                          '         Done!',
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 20,
+                              color: Color.fromARGB(255, 0, 0, 0)),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            )),
+      ],
+    );
+  }
+  
+  
+  
+  
+  
+  
+  
   @override
   Widget build(BuildContext context){
     return Scaffold(
@@ -112,7 +178,11 @@ class BuyNosAlive extends StatelessWidget {
                           borderRadius: BorderRadius.circular(10)),
                         child: TextButton(
                           onPressed: (){
-                            //PopUp
+                            showDialog(
+                              context: context,
+                              builder: (BuildContext context) =>
+                              _buildPopupDialog(context),
+                      );
                           },
                           child: Text('Finish Purchase', style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black, fontSize:18),),
                         ),

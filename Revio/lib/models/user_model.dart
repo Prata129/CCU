@@ -4,15 +4,13 @@ class User {
   String displayName;
   bool? isArtist;
   String avatarUrl;
-  double money;
 
   User(
       {required this.id,
       required this.email,
       required this.displayName,
       required this.isArtist,
-      required this.avatarUrl,
-      required this.money});
+      required this.avatarUrl});
 
   Map<String, dynamic> toMap() {
     if (this.id == '') {
@@ -21,7 +19,6 @@ class User {
         'displayName': displayName,
         'isArtist': isArtist,
         'avatarUrl': avatarUrl,
-        'money': money,
       };
     }
     return {
@@ -30,7 +27,6 @@ class User {
       'displayName': displayName,
       'isArtist': isArtist,
       'avatarUrl': avatarUrl,
-      'money': money
     };
   }
 }

@@ -213,7 +213,9 @@ class EventsHomePage extends StatelessWidget {
                                   ),
                                 ),
                               )
-                            ]))),
+                            ])
+                          )
+                        ),
                   ],
                 ),
               ],

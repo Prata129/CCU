@@ -26,7 +26,6 @@ class UserRepo {
       displayName: doc['displayName'],
       isArtist: doc['isArtist'],
       avatarUrl: doc['avatarUrl'],
-      money: doc['money'],
     );
   }
 

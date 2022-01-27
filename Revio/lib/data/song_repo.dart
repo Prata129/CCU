@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:revio/models/song_model.dart' as Model;
+import 'package:revio/models/OneSong_model.dart' as Model;
 
 class SongRepo {
   final CollectionReference _ref =
@@ -22,5 +22,20 @@ class SongRepo {
       'features': doc['features'],
       'path': doc['path']
     };
+  }
+
+  Stream<Model.Song> getAllSongs() async* {
+    final snapshot = _ref.snapshots();
+
+    await for (final snapshots in snapshot) {
+      for (final docs in snapshots.docChanges) {
+        yield Model.Song(
+          id: docs.doc.id, 
+          artist: docs.doc["artist"], 
+          description: docs.doc["description"], 
+          features: docs.doc["features"], 
+          name: docs.doc["features"]);
+      }
+    }
   }
 }

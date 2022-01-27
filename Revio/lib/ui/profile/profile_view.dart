@@ -19,6 +19,9 @@ class _ProfileViewState extends State<ProfileView> {
     Image.asset("assets/images/playlist1.png"),
     Image.asset("assets/images/playlist2.png"),
     Image.asset("assets/images/playlist3.png"),
+    Image.asset("assets/images/playlist3.png"),
+    Image.asset("assets/images/playlist3.png"),
+    Image.asset("assets/images/playlist3.png"),
   ];
 
   List<Artist> _handleArtistLists(Artist artist) {
@@ -63,14 +66,16 @@ class _ProfileViewState extends State<ProfileView> {
       ),
       Center(
           child: Padding(
-              padding: EdgeInsets.only(top: 115, left: 40),
+              padding: EdgeInsets.only(top: 100, left: 40),
               child: Text(
                 "Playlist $number",
                 style: GoogleFonts.roboto(
                     color: Colors.white,
                     fontSize: 17,
                     fontWeight: FontWeight.bold),
-              )))
+              )
+            )
+      )
     ]);
   }
 
@@ -86,13 +91,14 @@ class _ProfileViewState extends State<ProfileView> {
               style: const TextStyle(fontSize: 32.0, color: Color(0xFFC2C2C2))),
           elevation: 0,
         ),
-        body: SingleChildScrollView(
-          child: Column(
+
+        body: Column(
             mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
               Container(
                   alignment: Alignment.center,
-                  padding: const EdgeInsets.only(top: 40, right: 200),
+                  padding: const EdgeInsets.only(top: 10, right: 200),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: const <Widget>[
@@ -122,8 +128,8 @@ class _ProfileViewState extends State<ProfileView> {
                         fontWeight: FontWeight.w400)),
               ),
               SizedBox(
-                height: 200.0,
-                child: new ListView.separated(
+                height: 150,
+                  child: new ListView.separated(
                 separatorBuilder: (BuildContext context, int index) {
                   return SizedBox(
                     width: 20,
@@ -131,13 +137,12 @@ class _ProfileViewState extends State<ProfileView> {
                 },
                 shrinkWrap: true,
                 physics: const ClampingScrollPhysics(),
-                itemCount: 3,
+                itemCount: images.length,
                 itemBuilder: (BuildContext context, int index) {
                   return myImage(index);
                 },
                 scrollDirection: Axis.horizontal,
-                )
-              ),
+              )),
               Padding(
                 padding: const EdgeInsets.only(top: 20, bottom: 10),
                 child: Text(
@@ -152,20 +157,19 @@ class _ProfileViewState extends State<ProfileView> {
                   stream: getUserArtists(),
                   builder: (context, snapshot) {
                     if (snapshot.hasData) {
-                      ListView.builder(
+                      return Expanded(
+                        child: ListView.builder(
                           itemCount: snapshot.data!.length,
                           itemBuilder: (context, index) {
                             return ArtistItem(artist: snapshot.data![index]);
                           },
+                        ),
                       );
                     }
                     return Expanded(
                         child:
                             Center(child: Text("Go Listen to some artists.")));
                   })
-              ]
-          )
-        )
-    );
+            ]));
   }
 }

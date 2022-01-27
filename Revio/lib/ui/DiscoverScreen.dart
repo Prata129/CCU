@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import 'package:revio/ui/genreArtist_item.dart';
+import 'package:revio/models/user_model.dart';
+import 'package:revio/data/user_repo.dart';
 
 // ignore: constant_identifier_names
 const double SQUARE_SIZE = 158;
 
 class DiscoverScreen extends StatelessWidget {
   PageController pageController = PageController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -493,6 +498,29 @@ class GenreArtists extends StatelessWidget {
   String _genre;
   GenreArtists({required String genre}) : _genre = genre;
 
+  List<User> _artists = [];
+  final UserRepo _userRepo = UserRepo();
+
+  List<User> _handleGenreArtistLists(User artist) {
+    final index = _artists.indexWhere((element) => element.id == artist.id);
+    if (index == -1) {
+      //uhh new artist
+      _artists.add(artist);
+    } else {
+      //replace artist content
+      _artists[index] = artist;
+    }
+
+    _artists.sort((a, b) => b.displayName.compareTo(a.displayName));
+    return _artists;
+  }
+
+  Stream<List<User>> getUserArtists() {
+    return _userRepo
+        .getGenreArtists(_genre)
+        .map((update) => _handleGenreArtistLists(update));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -511,6 +539,22 @@ class GenreArtists extends StatelessWidget {
               style: TextStyle(fontSize: 32.0, color: Color(0xFFC2C2C2))),
           elevation: 0,
         ),
+        StreamBuilder<List<User>>(
+            stream: getUserArtists(),
+            builder: (context, snapshot) {
+              if (snapshot.hasData) {
+                return Expanded(
+                  child: ListView.builder(
+                    itemCount: snapshot.data!.length,
+                    itemBuilder: (context, index) {
+                      return GenreArtistItem(artist: snapshot.data![index]);
+                    },
+                  ),
+                );
+              }
+              return Expanded(
+                  child: Center(child: Text("Go Listen to some artists.")));
+            })
       ])),
     );
   }

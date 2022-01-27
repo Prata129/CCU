@@ -1,4 +1,3 @@
-
 import 'package:email_validator/email_validator.dart';
 import 'package:flutter/material.dart';
 import 'package:revio/service/auth/authentication_service.dart';
@@ -7,13 +6,15 @@ import 'package:revio/service/auth/authentication_state.dart';
 class SignUpModel extends ChangeNotifier {
   final AuthenticationService _authService;
 
-  SignUpModel({required AuthenticationService authService}) : _authService = authService;
+  SignUpModel({required AuthenticationService authService})
+      : _authService = authService;
 
   String _email = "";
   String _password = "";
   String _confirmedPassword = "";
   String _displayName = "";
   bool? _isArtist = false;
+  String? _genre;
   AuthState? _state;
 
   AuthState? get state {
@@ -30,6 +31,10 @@ class SignUpModel extends ChangeNotifier {
 
   String get password {
     return _password;
+  }
+
+  String? get genre {
+    return _genre;
   }
 
   String get confirmedPassword {
@@ -60,15 +65,20 @@ class SignUpModel extends ChangeNotifier {
     }
     return "Password must be at least 6 characters long.";
   }
-  
+
   void validateArtist(bool? value) {
     this._isArtist = value;
   }
-  
+
+  void validateGenre(String? value) {
+    _genre = value;
+  }
+
   String validadeUsername(String username) {
     _displayName = username;
     return "Username Available";
   }
+
   String validatePasswordMatch(String confirmedPassword) {
     _confirmedPassword = confirmedPassword;
     if (this._password == confirmedPassword) {
@@ -93,7 +103,12 @@ class SignUpModel extends ChangeNotifier {
     this._state = AuthState(AuthStatus.loading, null);
     notifyListeners();
 
-    this._state = await _authService.signUp(email: _email, password: _password, displayName: _displayName, isArtist: _isArtist);
+    this._state = await _authService.signUp(
+        email: _email,
+        password: _password,
+        displayName: _displayName,
+        isArtist: _isArtist,
+        genre: _genre);
 
     if (this._state!.authStatus == AuthStatus.authed) {
       _email = "";

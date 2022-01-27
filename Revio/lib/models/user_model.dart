@@ -5,14 +5,17 @@ class User {
   bool? isArtist;
   String avatarUrl;
   double money;
+  String? genre;
 
-  User(
-      {required this.id,
-      required this.email,
-      required this.displayName,
-      required this.isArtist,
-      required this.avatarUrl,
-      required this.money});
+  User({
+    required this.id,
+    required this.email,
+    required this.displayName,
+    required this.isArtist,
+    required this.avatarUrl,
+    required this.money,
+    this.genre,
+  });
 
   Map<String, dynamic> toMap() {
     if (this.id == '') {
@@ -22,6 +25,7 @@ class User {
         'isArtist': isArtist,
         'avatarUrl': avatarUrl,
         'money': money,
+        'genre': genre
       };
     }
     return {
@@ -30,7 +34,8 @@ class User {
       'displayName': displayName,
       'isArtist': isArtist,
       'avatarUrl': avatarUrl,
-      'money': money
+      'money': money,
+      'genre': genre
     };
   }
 }

@@ -4,8 +4,6 @@ import 'package:provider/provider.dart';
 import 'package:revio/service/auth/authentication_state.dart';
 import 'package:revio/ui/auth/auth_dialog.dart';
 import 'package:revio/ui/auth/signup_model.dart';
-import 'package:revio/ui/homepage.dart';
-import 'package:revio/ui/profile/profile_view.dart';
 import 'package:revio/ui/manager.dart';
 import 'package:revio/ui/artistManager.dart';
 
@@ -18,6 +16,8 @@ class SignUp extends StatefulWidget {
 
 class _SignUpState extends State<SignUp> {
   bool? valuefirst = false;
+  String? value;
+  final items = ['Pop', 'EDM', 'Rock', 'Fado', 'Funk', 'House', 'Kizomba'];
 
   @override
   void initState() {
@@ -139,6 +139,7 @@ class _SignUpState extends State<SignUp> {
               ),
             ],
           ),
+          GenreMenu(valuefirst, viewModel),
           SizedBox(height: 16),
           SizedBox(
             width: double.infinity,
@@ -164,4 +165,36 @@ class _SignUpState extends State<SignUp> {
             builder: (context, viewModel, child) =>
                 _authScreen(context, viewModel)));
   }
+
+  Widget GenreMenu(bool? valuefirst, SignUpModel viewModel) {
+    if (valuefirst == false) {
+      return SizedBox.shrink();
+    }
+    return Row(children: [
+      Container(
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(5),
+              border: Border.all(
+                  color: Color.fromARGB(255, 170, 170, 170), width: 1)),
+          child: DropdownButtonHideUnderline(
+              child: DropdownButton<String>(
+            value: value,
+            items: items.map(buildMenuItem).toList(),
+            onChanged: (value) {
+              setState(() {
+                viewModel.validateGenre(value);
+                this.value = value;
+              });
+            },
+          )))
+    ]);
+  }
+
+  DropdownMenuItem<String> buildMenuItem(String item) => DropdownMenuItem(
+        value: item,
+        child: Text(
+          item,
+          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+        ),
+      );
 }

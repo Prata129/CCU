@@ -10,21 +10,21 @@ class UserCreationService {
   UserCreationService(this._userRepo);
 
   void addArtist(String name) async {
-    await _userRepo.addArtist(
-      Artist(
-        id: '',
-        name: name,
-        level: 0,
-        timesListened: 0,
-      )
-    );
+    await _userRepo.addArtist(Artist(
+      id: '',
+      name: name,
+      level: 0,
+      timesListened: 0,
+    ));
   }
 
-  void incrementTimesListened(String artistName) { //yolo
+  void incrementTimesListened(String artistName) {
+    //yolo
     _userRepo.incrementTimesListened(artistName);
   }
 
-  void CreateUser(String email, String displayName, bool? isArtist) async {
+  void CreateUser(
+      String email, String displayName, bool? isArtist, String? genre) async {
     await _userRepo.saveUser(
       User(
         id: '',
@@ -33,6 +33,7 @@ class UserCreationService {
         isArtist: isArtist,
         avatarUrl: '',
         money: 50.55,
+        genre: genre,
       ),
     );
   }

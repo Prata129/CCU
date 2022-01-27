@@ -16,6 +16,16 @@ class ArtistHomeScreen extends StatefulWidget {
 class _ArtistHomeScreen extends State<ArtistHomeScreen> {
   final UserRepo _userRepo = UserRepo();
   double _money = 00.00;
+  String _displayName = "";
+
+  String getUsername() {
+    _userRepo.getUser().then((User user) {
+      setState(() {
+        _displayName = user.displayName;
+      });
+    });
+    return _displayName;
+  }
 
   double getUserMoney() {
     _userRepo.getUser().then((User user) {
@@ -41,7 +51,7 @@ class _ArtistHomeScreen extends State<ArtistHomeScreen> {
                 alignment: const AlignmentDirectional(0.7, -0.8),
                 child:  */
               Container(
-                child: Text('Welcome Back, Zé',
+                child: Text('Welcome Back, ${getUsername()}',
                     textAlign: TextAlign.left,
                     style: TextStyle(
                       color: Color(0xFFC2C2C2),

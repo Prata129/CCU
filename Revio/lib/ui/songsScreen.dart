@@ -26,8 +26,17 @@ class SongsPage extends StatelessWidget {
   }
   @override 
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Color(0xFF222222),
+    return Scaffold(         
+        backgroundColor: const Color(0xFF222222),
+        appBar: AppBar(
+          automaticallyImplyLeading: false,
+          iconTheme: const IconThemeData(color: Color(0xFFC2C2C2)),
+          backgroundColor: const Color(0xFF222222),
+          title: Text("My Songs",
+              style: const TextStyle(fontSize: 32.0, color: Color(0xFFC2C2C2))),
+          elevation: 0,
+        ),
+
       body: Column(
           children: [
             StreamBuilder<List<Song>>(

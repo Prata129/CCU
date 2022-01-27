@@ -26,7 +26,6 @@ class UserRepo {
       displayName: doc['displayName'],
       isArtist: doc['isArtist'],
       avatarUrl: doc['avatarUrl'],
-      money: doc['money'],
       genre: doc['genre'],
     );
   }
@@ -66,7 +65,7 @@ class UserRepo {
       for (final changes in snapshots.docChanges) {
         yield Artist(
             id: changes.doc.id,
-            name: changes.doc["name"],
+            name: changes.doc["nome"],
             level: changes.doc["level"],
             timesListened: changes.doc["timesListened"]);
       }
@@ -89,7 +88,6 @@ class UserRepo {
           displayName: changes.doc["nome"],
           isArtist: changes.doc["isArtist"],
           avatarUrl: changes.doc["avatarUrl"],
-          money: changes.doc["money"],
           genre: changes.doc["genre"],
         );
       }

@@ -30,7 +30,7 @@ class _ArtistHomeScreen extends State<ArtistHomeScreen> {
   double getUserMoney() {
     _userRepo.getUser().then((User user) {
       setState(() {
-        _money = user.money;
+        _money = 0;
       });
     });
     return _money;

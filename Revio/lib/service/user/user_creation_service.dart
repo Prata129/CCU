@@ -32,7 +32,6 @@ class UserCreationService {
         displayName: displayName,
         isArtist: isArtist,
         avatarUrl: '',
-        money: 50.55,
         genre: genre,
       ),
     );

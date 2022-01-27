@@ -4,7 +4,7 @@ class User {
   String displayName;
   bool? isArtist;
   String avatarUrl;
-  double money;
+
   String? genre;
 
   User({
@@ -13,7 +13,6 @@ class User {
     required this.displayName,
     required this.isArtist,
     required this.avatarUrl,
-    required this.money,
     this.genre,
   });
 
@@ -24,7 +23,6 @@ class User {
         'displayName': displayName,
         'isArtist': isArtist,
         'avatarUrl': avatarUrl,
-        'money': money,
         'genre': genre
       };
     }
@@ -34,7 +32,6 @@ class User {
       'displayName': displayName,
       'isArtist': isArtist,
       'avatarUrl': avatarUrl,
-      'money': money,
       'genre': genre
     };
   }

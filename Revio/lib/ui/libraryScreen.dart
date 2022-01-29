@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:revio/ui/mySongsScreen.dart';
 
 // ignore: constant_identifier_names
 const double SQUARE_SIZE = 158;
@@ -84,6 +85,14 @@ class LibraryScreen extends StatelessWidget {
                         child: SizedBox(
                             width: SQUARE_SIZE,
                             height: SQUARE_SIZE,
+                            child: InkWell(
+                                onTap: () {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              MySongsPage()));
+                            },
                             child: Stack(children: <Widget>[
                               Container(
                                 decoration: BoxDecoration(
@@ -128,7 +137,9 @@ class LibraryScreen extends StatelessWidget {
                                   ),
                                 ),
                               )
-                            ])),
+                            ])
+                          )
+                        ),
                       )
                     ],
                   ),

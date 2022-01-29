@@ -25,18 +25,18 @@ class HomePage extends StatefulWidget {
 
     @override
     void initState() {
-      initialSetup();
+      //initialSetup();
       super.initState();
     }
 
-    Future<void> initialSetup() async {
-      httpClient = http.Client();
-      ethClient = Web3Client(rpcUrl, httpClient);
+    // Future<void> initialSetup() async {
+    //   httpClient = http.Client();
+    //   ethClient = Web3Client(rpcUrl, httpClient);
 
-      await getCredentials();
-      await getDeployedContracts();
-      await getContractFunctions();
-    }
+    //   await getCredentials();
+    //   await getDeployedContracts();
+    //   await getContractFunctions();
+    // }
     
     /// This will construct [credentials] with the provided [privateKey]
     /// and load the Ethereum address in [myAdderess] specified by these credentials.
@@ -65,59 +65,59 @@ class HomePage extends StatefulWidget {
     }
 
     /// This will help us to find all the [public functions] defined by the [contract]
-    late DeployedContract contract;
-    late ContractFunction getBalanceAmount,
-        getDepositAmount,
-        addDepositAmount,
-        withdrawBalance;
+    // late DeployedContract contract;
+    // ContractFunction getBalanceAmount,
+    //     getDepositAmount,
+    //     addDepositAmount,
+    //     withdrawBalance;
 
-    Future<void> getContractFunctions() async {
-      contract = DeployedContract(
-          ContractAbi.fromJson(abi, "Investment"), contractAddress);
+    // Future<void> getContractFunctions() async {
+    //   contract = DeployedContract(
+    //       ContractAbi.fromJson(abi, "Investment"), contractAddress);
 
-      getBalanceAmount = contract.function('getBalanceAmount');
-      getDepositAmount = contract.function('getDepositAmount');
-      addDepositAmount = contract.function('addDepositAmount');
-      withdrawBalance = contract.function('withdrawBalance');
-    }
+    //   ContractFunction getBalanceAmount = contract.function('getBalanceAmount');
+    //   ContractFunction getDepositAmount = contract.function('getDepositAmount');
+    //   ContractFunction addDepositAmount = contract.function('addDepositAmount');
+    //   ContractFunction withdrawBalance = contract.function('withdrawBalance');
+    // }
 
     /// This will call a [functionName] with [functionArgs] as parameters
     /// defined in the [contract] and returns its result
-    Future<List<dynamic>> readContract(
-      ContractFunction functionName,
-      List<dynamic> functionArgs,
-    ) async {
-      var queryResult = await ethClient.call(
-        contract: contract,
-        function: functionName,
-        params: functionArgs,
-      );
+    // Future<List<dynamic>> readContract(
+    //   ContractFunction functionName,
+    //   List<dynamic> functionArgs,
+    // ) async {
+    //   var queryResult = await ethClient.call(
+    //     contract: contract,
+    //     function: functionName,
+    //     params: functionArgs,
+    //   );
 
-      return queryResult;
-    }
+    //   return queryResult;
+    // }
 
-    /// Signs the given transaction using the keys supplied in the [credentials] object
-    /// to upload it to the client so that it can be executed
-    Future<void> writeContract(
-      ContractFunction functionName,
-      List<dynamic> functionArgs,
-    ) async {
-      await ethClient.sendTransaction(
-        credentials,
-        Transaction.callContract(
-          contract: contract,
-          function: functionName,
-          parameters: functionArgs,
-        ),
-      );
-    }
+    // /// Signs the given transaction using the keys supplied in the [credentials] object
+    // /// to upload it to the client so that it can be executed
+    // Future<void> writeContract(
+    //   ContractFunction functionName,
+    //   List<dynamic> functionArgs,
+    // ) async {
+    //   await ethClient.sendTransaction(
+    //     credentials,
+    //     Transaction.callContract(
+    //       contract: contract,
+    //       function: functionName,
+    //       parameters: functionArgs,
+    //     ),
+    //   );
+    // }
 
-    int getCriptoBalance() {
-      readContract(getBalanceAmount, []).then((value) {
-         balance = value.first;
-      });
-      return balance;
-    }
+    // int getCriptoBalance() {
+    //   readContract(getBalanceAmount, []).then((value) {
+    //      balance = value.first;
+    //   });
+    //   return balance;
+    // }
 
     @override
     Widget build(BuildContext context) {
@@ -192,7 +192,7 @@ class HomePage extends StatefulWidget {
                         Expanded(
                           flex: 1,
                           child: Text(
-                            getCriptoBalance().toString(),
+                            "0",
                             style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontSize: 14,

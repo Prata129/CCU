@@ -219,6 +219,7 @@ class _AddSongState extends State<AddSongScreen> {
     viewModel.addSong();
 
     task = FirebaseApi.uploadFile(destination, file!);
+    
     setState(() {});
   }
 

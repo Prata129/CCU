@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'package:flutter/material.dart';
 import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 import 'package:cupertino_icons/cupertino_icons.dart';
 import 'package:flutter/material.dart';
@@ -59,7 +60,7 @@ class _Manager extends State<Manager> {
     return [
       LibraryScreen(),
       DiscoverScreen(),
-      HomeScreen(),
+      HomePage(),
       EventsHomePage(),
       ProfileView(),
     ];

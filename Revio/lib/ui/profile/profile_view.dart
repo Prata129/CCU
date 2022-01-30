@@ -89,89 +89,145 @@ class _ProfileViewState extends State<ProfileView> {
               style: const TextStyle(fontSize: 32.0, color: Color(0xFFC2C2C2))),
           elevation: 0,
         ),
-        body: SingleChildScrollView(
-            physics: ScrollPhysics(),
-            child: Column(
-                mainAxisSize: MainAxisSize.min,
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: <Widget>[
+
+        body: SingleChildScrollView( physics: ScrollPhysics(),
+        child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: <Widget>[
+                Row(
+                  children: <Widget>[ 
                   Container(
-                      alignment: Alignment.center,
-                      padding: const EdgeInsets.only(top: 10, right: 200),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: const <Widget>[
-                          CircleAvatar(
-                            radius: 65.0,
-                            backgroundColor: Color(0xFFE5E5E5),
-                            child: CircleAvatar(
-                              radius: 63.0,
-                              backgroundImage:
-                                  AssetImage('assets/images/adele25.jpg'),
+                    alignment: Alignment.center,
+                    padding: const EdgeInsets.only(left: 20,top: 10, right: 100),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: const <Widget>[
+                        CircleAvatar(
+                          radius: 65.0,
+                          backgroundColor: Color(0xFFE5E5E5),
+                          child: CircleAvatar(
+                            radius: 63.0,
+                            backgroundImage:
+                                AssetImage('assets/images/adele25.jpg'),
+                          ),
+                        )
+                        //Avatar(
+                        // avatarUrl: currentUser.avatarUrl,
+                        //  onTap: () {
+                        //TODO TAP TO CHANGE PHOTO
+                        //})
+                      ],
+                    )
+                  ),
+                  Column( 
+                    children: <Widget>[
+                      const Padding(padding: EdgeInsets.only(bottom: 5), 
+                        child:Text("Your Balance:", 
+                        style: TextStyle(
+                          color: Color(0xFFE5E5E5)
+                          )
+                        ),
+                      ),
+                      DecoratedBox(
+                        decoration: BoxDecoration(
+                          shape: BoxShape.rectangle,
+                          borderRadius: BorderRadius.circular(10),
+                          color: Color(0xFFC4C4C4)
+                        ),
+                      child: Container(
+                        width: 60,
+                        height: 25,
+                        child: Center(
+                          child: Text(
+                            "0")
+                          )
+                        ),
+                      ),
+                      Container(
+                        height: 20,
+                        margin: const EdgeInsets.only(top: 10),
+                        child: ElevatedButton(
+                          onPressed: () {}, 
+                          style: ButtonStyle(
+                            backgroundColor: MaterialStateProperty.all(Color(0xFFC4C4C4)),
+                            shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                              RoundedRectangleBorder (
+                                borderRadius: BorderRadius.circular(10) 
+                              )
+                            )
+                          ),
+                          child: const Text(
+                            "Add Funds",
+                            maxLines: 1,
+                            style: TextStyle(
+                              fontSize: 10,
+                              color: Colors.black
                             ),
                           )
-                          //Avatar(
-                          // avatarUrl: currentUser.avatarUrl,
-                          //  onTap: () {
-                          //TODO TAP TO CHANGE PHOTO
-                          //})
-                        ],
-                      )),
-                  Padding(
-                    padding: EdgeInsets.only(top: 20, right: 250, bottom: 10),
-                    child: Text('Playlists',
-                        textAlign: TextAlign.left,
-                        style: GoogleFonts.roboto(
-                            color: Colors.white,
-                            fontSize: 30,
-                            fontWeight: FontWeight.w400)),
-                  ),
-                  SizedBox(
-                      height: 150,
-                      child: new ListView.separated(
-                        separatorBuilder: (BuildContext context, int index) {
-                          return SizedBox(
-                            width: 20,
-                          );
-                        },
-                        shrinkWrap: true,
-                        physics: const ClampingScrollPhysics(),
-                        itemCount: images.length,
-                        itemBuilder: (BuildContext context, int index) {
-                          return myImage(index);
-                        },
-                        scrollDirection: Axis.horizontal,
-                      )),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 20, bottom: 10),
-                    child: Text(
-                      "Favorite Artists",
-                      style: GoogleFonts.roboto(
-                          color: Colors.white,
-                          fontSize: 28,
-                          fontWeight: FontWeight.w400),
-                    ),
-                  ),
-                  StreamBuilder<List<Artist>>(
-                      stream: getUserArtists(),
-                      builder: (context, snapshot) {
-                        if (snapshot.hasData) {
-                          return Flexible(
-                            child: ListView.builder(
-                              physics: const NeverScrollableScrollPhysics(),
-                              shrinkWrap: true,
-                              itemCount: snapshot.data!.length,
-                              itemBuilder: (context, index) {
-                                return ArtistItem(
-                                    artist: snapshot.data![index]);
-                              },
-                            ),
-                          );
-                        }
-                        return Flexible(
-                            child: Center(
-                                child: Text("Go Listen to some artists.")));
-                      })
-                ])));
+                        )
+                      )
+                    ]
+                  )
+                ]
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 20, right: 250, bottom: 10),
+                child: Text('Playlists',
+                    textAlign: TextAlign.left,
+                    style: GoogleFonts.roboto(
+                        color: Colors.white,
+                        fontSize: 30,
+                        fontWeight: FontWeight.w400)),
+              ),
+              SizedBox(
+                height: 150,
+                  child: new ListView.separated(
+                separatorBuilder: (BuildContext context, int index) {
+                  return SizedBox(
+                    width: 20,
+                  );
+                },
+                shrinkWrap: true,
+                physics: const ClampingScrollPhysics(),
+                itemCount: images.length,
+                itemBuilder: (BuildContext context, int index) {
+                  return myImage(index);
+                },
+                scrollDirection: Axis.horizontal,
+              )),
+              Padding(
+                padding: const EdgeInsets.only(top: 20, bottom: 10),
+                child: Text(
+                  "Favorite Artists",
+                  style: GoogleFonts.roboto(
+                      color: Colors.white,
+                      fontSize: 28,
+                      fontWeight: FontWeight.w400),
+                ),
+              ),
+              StreamBuilder<List<Artist>>(
+                  stream: getUserArtists(),
+                  builder: (context, snapshot) {
+                    if (snapshot.hasData) {
+                      return Flexible(
+                        child: ListView.builder(
+                          physics: const NeverScrollableScrollPhysics(),
+                          shrinkWrap: true,
+                          itemCount: snapshot.data!.length,
+                          itemBuilder: (context, index) {
+                            return ArtistItem(artist: snapshot.data![index]);
+                          },
+                        ),
+                      );
+                    }
+                    return Flexible(
+                        child:
+                            Center(child: Text("Go Listen to some artists.")));
+                  })
+            ]
+            )
+            )
+            );
   }
 }

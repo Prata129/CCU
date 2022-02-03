@@ -371,7 +371,7 @@ class _ArtistHomeScreen extends State<ArtistHomeScreen> {
                 child: ListView(scrollDirection: Axis.horizontal, children: [
                   Column(
                     children: [
-                      Padding(
+                      Expanded(child: Padding(
                         padding: const EdgeInsets.only(top: 3),
                         child: SizedBox(
                             width: 140,
@@ -421,9 +421,118 @@ class _ArtistHomeScreen extends State<ArtistHomeScreen> {
                                 ),
                               )
                             ])),
-                      )
+                        ),
+                      ),
                     ],
                   ),
+                  Expanded(child: Padding(
+                        padding: const EdgeInsets.only(top: 3, left: 3),
+                        child: SizedBox(
+                            width: 140,
+                            height: 140,
+                            child: Stack(children: <Widget>[
+                              Container(
+                                decoration: BoxDecoration(
+                                  image: const DecorationImage(
+                                    fit: BoxFit.fill,
+                                    image: AssetImage(
+                                      'assets/images/house.png',
+                                    ),
+                                  ),
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
+                              ),
+                              Container(
+                                decoration: BoxDecoration(
+                                  gradient: LinearGradient(
+                                      begin: FractionalOffset.topCenter,
+                                      end: FractionalOffset.bottomCenter,
+                                      colors: [
+                                        Colors.black.withOpacity(0),
+                                        Colors.black,
+                                      ],
+                                      stops: const [
+                                        0,
+                                        1
+                                      ]),
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
+                              ),
+                              Container(
+                                child: const Align(
+                                  alignment: Alignment
+                                      .bottomCenter, // Align however you like (i.e .centerRight, centerLeft)
+                                  child: Padding(
+                                    padding: EdgeInsets.all(5),
+                                    child: Text(
+                                      'Style',
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 18,
+                                          color: Colors.white),
+                                    ),
+                                  ),
+                                ),
+                              )
+                            ])),
+                        )
+                      ),
+
+                      Expanded(child: Padding(
+                        padding: const EdgeInsets.only(top: 3, left: 3),
+                        child: SizedBox(
+                            width: 140,
+                            height: 140,
+                            child: Stack(children: <Widget>[
+                              Container(
+                                decoration: BoxDecoration(
+                                  image: const DecorationImage(
+                                    fit: BoxFit.fill,
+                                    image: AssetImage(
+                                      'assets/images/nosalive.png',
+                                    ),
+                                  ),
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
+                              ),
+                              Container(
+                                decoration: BoxDecoration(
+                                  gradient: LinearGradient(
+                                      begin: FractionalOffset.topCenter,
+                                      end: FractionalOffset.bottomCenter,
+                                      colors: [
+                                        Colors.black.withOpacity(0),
+                                        Colors.black,
+                                      ],
+                                      stops: const [
+                                        0,
+                                        1
+                                      ]),
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
+                              ),
+                              Container(
+                                child: const Align(
+                                  alignment: Alignment
+                                      .bottomCenter, // Align however you like (i.e .centerRight, centerLeft)
+                                  child: Padding(
+                                    padding: EdgeInsets.all(5),
+                                    child: Text(
+                                      'Event',
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 18,
+                                          color: Colors.white),
+                                    ),
+                                  ),
+                                ),
+                              )
+                            ])),
+                        )
+                      ),
+
+
+
                 ]),
               ),
             ],
@@ -454,7 +563,7 @@ class _ArtistHomeScreen extends State<ArtistHomeScreen> {
                 child: ListView(scrollDirection: Axis.horizontal, children: [
                   Column(
                     children: [
-                      Padding(
+                      Expanded(child: Padding(
                         padding: const EdgeInsets.only(top: 3),
                         child: SizedBox(
                             width: 140,
@@ -465,7 +574,7 @@ class _ArtistHomeScreen extends State<ArtistHomeScreen> {
                                   image: const DecorationImage(
                                     fit: BoxFit.fill,
                                     image: AssetImage(
-                                      'assets/images/adele25.jpg',
+                                      'assets/images/EDM.png',
                                     ),
                                   ),
                                   borderRadius: BorderRadius.circular(10),
@@ -494,7 +603,7 @@ class _ArtistHomeScreen extends State<ArtistHomeScreen> {
                                   child: Padding(
                                     padding: EdgeInsets.all(5),
                                     child: Text(
-                                      'Artists',
+                                      'Style',
                                       style: TextStyle(
                                           fontWeight: FontWeight.bold,
                                           fontSize: 18,
@@ -504,9 +613,114 @@ class _ArtistHomeScreen extends State<ArtistHomeScreen> {
                                 ),
                               )
                             ])),
-                      )
+                        ),
+                      ),
                     ],
                   ),
+                  Expanded(child: Padding(
+                        padding: const EdgeInsets.only(top: 3),
+                        child: SizedBox(
+                            width: 140,
+                            height: 140,
+                            child: Stack(children: <Widget>[
+                              Container(
+                                decoration: BoxDecoration(
+                                  image: const DecorationImage(
+                                    fit: BoxFit.fill,
+                                    image: AssetImage(
+                                      'assets/images/SumolSummerFest.png',
+                                    ),
+                                  ),
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
+                              ),
+                              Container(
+                                decoration: BoxDecoration(
+                                  gradient: LinearGradient(
+                                      begin: FractionalOffset.topCenter,
+                                      end: FractionalOffset.bottomCenter,
+                                      colors: [
+                                        Colors.black.withOpacity(0),
+                                        Colors.black,
+                                      ],
+                                      stops: const [
+                                        0,
+                                        1
+                                      ]),
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
+                              ),
+                              Container(
+                                child: const Align(
+                                  alignment: Alignment
+                                      .bottomCenter, // Align however you like (i.e .centerRight, centerLeft)
+                                  child: Padding(
+                                    padding: EdgeInsets.all(5),
+                                    child: Text(
+                                      'Events',
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 18,
+                                          color: Colors.white),
+                                    ),
+                                  ),
+                                ),
+                              )
+                            ])),
+                        ),
+                      ),
+                      Expanded(child: Padding(
+                        padding: const EdgeInsets.only(top: 3),
+                        child: SizedBox(
+                            width: 140,
+                            height: 140,
+                            child: Stack(children: <Widget>[
+                              Container(
+                                decoration: BoxDecoration(
+                                  image: const DecorationImage(
+                                    fit: BoxFit.fill,
+                                    image: AssetImage(
+                                      'assets/images/VodafoneParedesDeCoura.png',
+                                    ),
+                                  ),
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
+                              ),
+                              Container(
+                                decoration: BoxDecoration(
+                                  gradient: LinearGradient(
+                                      begin: FractionalOffset.topCenter,
+                                      end: FractionalOffset.bottomCenter,
+                                      colors: [
+                                        Colors.black.withOpacity(0),
+                                        Colors.black,
+                                      ],
+                                      stops: const [
+                                        0,
+                                        1
+                                      ]),
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
+                              ),
+                              Container(
+                                child: const Align(
+                                  alignment: Alignment
+                                      .bottomCenter, // Align however you like (i.e .centerRight, centerLeft)
+                                  child: Padding(
+                                    padding: EdgeInsets.all(5),
+                                    child: Text(
+                                      'Events',
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 18,
+                                          color: Colors.white),
+                                    ),
+                                  ),
+                                ),
+                              )
+                            ])),
+                        ),
+                      ),
                 ]),
               ),
             ],

@@ -11,11 +11,13 @@ class Contract extends StatefulWidget {
 }
 
 class _Contract extends State<Contract> {
+  int balance = 0, totalDeposits = 0, installmentAmount = 3;
+
   late Client httpClient;
   late Web3Client ethClient;
   // JSON-RPC is a remote procedure call protocol encoded in JSON
   // Remote Procedure Call (RPC) is about executing a block of code on another server
-  String rpcUrl = 'http://127.0.0.1:7545';
+  String rpcUrl = 'http://10.0.2.2:7545';
 
   @override
   void initState() {
@@ -37,12 +39,12 @@ class _Contract extends State<Contract> {
   }
 
   String privateKey =
-      '587e58e2c51224b206ebf30efcd824c80017704b4d5aeade2dc01442c4026877';
+      'b416b2c6a36be58db13d237850909d75ef5d37f9c32475cd10e0f2675a3ae389';
   late Credentials credentials;
   late EthereumAddress myAddress;
 
   Future<void> getCredentials() async {
-    credentials = await ethClient.credentialsFromPrivateKey(privateKey);
+    credentials = EthPrivateKey.fromHex(privateKey);
     myAddress = await credentials.extractAddress();
   }
 
@@ -98,6 +100,7 @@ class _Contract extends State<Contract> {
     ContractFunction functionName,
     List<dynamic> functionArgs,
   ) async {
+    print('onWriteContract');
     await ethClient.sendTransaction(
       credentials,
       Transaction.callContract(
@@ -119,19 +122,26 @@ class _Contract extends State<Contract> {
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
             Padding(
-                padding: EdgeInsets.only(top: 20.0),
-                child: Align(
-                    alignment: Alignment.center,
-                    child: DecoratedBox(
-                      decoration: BoxDecoration(
-                          shape: BoxShape.rectangle,
-                          borderRadius: BorderRadius.circular(10),
-                          color: Color(0xFFC4C4C4)),
-                      child: Container(
-                          width: 200,
-                          height: 200,
-                          child: Center(child: Text("Balance"))),
-                    ))),
+              padding: EdgeInsets.only(top: 20.0),
+              child: Align(
+                alignment: Alignment.topCenter,
+                child: FloatingActionButton.extended(
+                  heroTag: 'check_balance',
+                  onPressed: () async {
+                    var result = await readContract(getWallet, []);
+                    balance = result.first?.toInt();
+                    setState(() {});
+                  },
+                  label: Text('Check Balance'),
+                  icon: Icon(Icons.refresh),
+                  backgroundColor: Colors.pink,
+                ),
+              ),
+            ),
+            Text('${balance}',
+                style: TextStyle(
+                  color: Colors.white,
+                )),
             Padding(
                 padding: EdgeInsets.only(top: 20.0),
                 child: Align(
@@ -151,10 +161,8 @@ class _Contract extends State<Contract> {
                 width: 200,
                 margin: const EdgeInsets.only(top: 10),
                 child: ElevatedButton(
-                    onPressed: () {
-                      () async {
-                        await writeContract(addFunds, [BigInt.from(3)]);
-                      };
+                    onPressed: () async {
+                      await writeContract(addFunds, [BigInt.from(3)]);
                     },
                     style: ButtonStyle(
                         backgroundColor:

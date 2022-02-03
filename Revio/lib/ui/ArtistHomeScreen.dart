@@ -98,17 +98,15 @@ class _ArtistHomeScreen extends State<ArtistHomeScreen> {
                     borderRadius: BorderRadius.circular(10)),
                 child: InkWell(
                   onTap: () {
-                    Navigator.push(
+                    /*Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => ArtistStatsScreen()));
-                    /*Navigator.push(context,
+                            builder: (context) => ArtistStatsScreen()));*/
+                    Navigator.push(context,
                         MaterialPageRoute(builder: (context) => Contract()));
-                        
-                        RAFAEL: I COMMENTED TO ALLOW THE BUTTON TO GO TO
-                        ARTIST STATS BUT THIS WAS BEING USED TO TRY GANACHE ?
 
-                        */
+                    //RAFAEL: I COMMENTED TO ALLOW THE BUTTON TO GO TO
+                    //ARTIST STATS BUT THIS WAS BEING USED TO TRY GANACHE ?
                   },
                   child: Column(
                     children: [

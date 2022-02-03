@@ -11,49 +11,47 @@ import 'package:web3dart/web3dart.dart';
 import 'package:http/http.dart' as http;
 
 class HomePage extends StatefulWidget {
-
   @override
   _HomePageState createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  /*int balance = 0, totalDeposits = 0, installmentAmount = 3;
+
+  late http.Client httpClient;
+  late Web3Client ethClient;
+  String rpcUrl = 'http://127.0.0.1:7545';*/
+
+  @override
+  void initState() {
+    //initialSetup();
+    super.initState();
   }
 
+  // Future<void> initialSetup() async {
+  //   httpClient = http.Client();
+  //   ethClient = Web3Client(rpcUrl, httpClient);
 
-  class _HomePageState extends State<HomePage> {
-    int balance = 0, totalDeposits = 0, installmentAmount = 3;
+  //   await getCredentials();
+  //   await getDeployedContracts();
+  //   await getContractFunctions();
+  // }
 
-    late http.Client httpClient;
-    late Web3Client ethClient;
-    String rpcUrl = 'http://127.0.0.1:7545';
+  /// This will construct [credentials] with the provided [privateKey]
+  /// and load the Ethereum address in [myAdderess] specified by these credentials.
+  /* String privateKey =
+      '87f394afbfe6d03549bf83f00c374f269d85f8b5bfe9696e818a5e0c29375f4a';
+  late Credentials credentials;
+  late EthereumAddress myAddress;
 
-    @override
-    void initState() {
-      //initialSetup();
-      super.initState();
-    }
+  Future<void> getCredentials() async {
+    credentials = await EthPrivateKey.fromHex(privateKey);
+    myAddress = await credentials.extractAddress();
+  }*/
 
-    // Future<void> initialSetup() async {
-    //   httpClient = http.Client();
-    //   ethClient = Web3Client(rpcUrl, httpClient);
-
-    //   await getCredentials();
-    //   await getDeployedContracts();
-    //   await getContractFunctions();
-    // }
-    
-    /// This will construct [credentials] with the provided [privateKey]
-    /// and load the Ethereum address in [myAdderess] specified by these credentials.
-    String privateKey =
-        '87f394afbfe6d03549bf83f00c374f269d85f8b5bfe9696e818a5e0c29375f4a';
-    late Credentials credentials;
-    late EthereumAddress myAddress;
-
-    Future<void> getCredentials() async {
-      credentials = await EthPrivateKey.fromHex(privateKey);
-      myAddress = await credentials.extractAddress();
-    }
-
-    /// This will parse an Ethereum address of the contract in [contractAddress]
-    /// from the hexadecimal representation present inside the [ABI]
-    late String abi;
+  /// This will parse an Ethereum address of the contract in [contractAddress]
+  /// from the hexadecimal representation present inside the [ABI]
+  /* late String abi;
     late EthereumAddress contractAddress;
 
     Future<void> getDeployedContracts() async {
@@ -63,65 +61,65 @@ class HomePage extends StatefulWidget {
 
       contractAddress =
           EthereumAddress.fromHex(abiJson['networks']['5777']['address']);
-    }
+    }*/
 
-    /// This will help us to find all the [public functions] defined by the [contract]
-    // late DeployedContract contract;
-    // ContractFunction getBalanceAmount,
-    //     getDepositAmount,
-    //     addDepositAmount,
-    //     withdrawBalance;
+  /// This will help us to find all the [public functions] defined by the [contract]
+  // late DeployedContract contract;
+  // ContractFunction getBalanceAmount,
+  //     getDepositAmount,
+  //     addDepositAmount,
+  //     withdrawBalance;
 
-    // Future<void> getContractFunctions() async {
-    //   contract = DeployedContract(
-    //       ContractAbi.fromJson(abi, "Investment"), contractAddress);
+  // Future<void> getContractFunctions() async {
+  //   contract = DeployedContract(
+  //       ContractAbi.fromJson(abi, "Investment"), contractAddress);
 
-    //   ContractFunction getBalanceAmount = contract.function('getBalanceAmount');
-    //   ContractFunction getDepositAmount = contract.function('getDepositAmount');
-    //   ContractFunction addDepositAmount = contract.function('addDepositAmount');
-    //   ContractFunction withdrawBalance = contract.function('withdrawBalance');
-    // }
+  //   ContractFunction getBalanceAmount = contract.function('getBalanceAmount');
+  //   ContractFunction getDepositAmount = contract.function('getDepositAmount');
+  //   ContractFunction addDepositAmount = contract.function('addDepositAmount');
+  //   ContractFunction withdrawBalance = contract.function('withdrawBalance');
+  // }
 
-    /// This will call a [functionName] with [functionArgs] as parameters
-    /// defined in the [contract] and returns its result
-    // Future<List<dynamic>> readContract(
-    //   ContractFunction functionName,
-    //   List<dynamic> functionArgs,
-    // ) async {
-    //   var queryResult = await ethClient.call(
-    //     contract: contract,
-    //     function: functionName,
-    //     params: functionArgs,
-    //   );
+  /// This will call a [functionName] with [functionArgs] as parameters
+  /// defined in the [contract] and returns its result
+  // Future<List<dynamic>> readContract(
+  //   ContractFunction functionName,
+  //   List<dynamic> functionArgs,
+  // ) async {
+  //   var queryResult = await ethClient.call(
+  //     contract: contract,
+  //     function: functionName,
+  //     params: functionArgs,
+  //   );
 
-    //   return queryResult;
-    // }
+  //   return queryResult;
+  // }
 
-    // /// Signs the given transaction using the keys supplied in the [credentials] object
-    // /// to upload it to the client so that it can be executed
-    // Future<void> writeContract(
-    //   ContractFunction functionName,
-    //   List<dynamic> functionArgs,
-    // ) async {
-    //   await ethClient.sendTransaction(
-    //     credentials,
-    //     Transaction.callContract(
-    //       contract: contract,
-    //       function: functionName,
-    //       parameters: functionArgs,
-    //     ),
-    //   );
-    // }
+  // /// Signs the given transaction using the keys supplied in the [credentials] object
+  // /// to upload it to the client so that it can be executed
+  // Future<void> writeContract(
+  //   ContractFunction functionName,
+  //   List<dynamic> functionArgs,
+  // ) async {
+  //   await ethClient.sendTransaction(
+  //     credentials,
+  //     Transaction.callContract(
+  //       contract: contract,
+  //       function: functionName,
+  //       parameters: functionArgs,
+  //     ),
+  //   );
+  // }
 
-    // int getCriptoBalance() {
-    //   readContract(getBalanceAmount, []).then((value) {
-    //      balance = value.first;
-    //   });
-    //   return balance;
-    // }
+  // int getCriptoBalance() {
+  //   readContract(getBalanceAmount, []).then((value) {
+  //      balance = value.first;
+  //   });
+  //   return balance;
+  // }
 
-    @override
-    Widget build(BuildContext context) {
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFF222222),
       body: SingleChildScrollView(
@@ -175,8 +173,10 @@ class HomePage extends StatefulWidget {
                     borderRadius: BorderRadius.circular(10)),
                 child: InkWell(
                   onTap: () {
-                    Navigator.push(context,
-                                    MaterialPageRoute(builder: (context) => BlockchainStats()));
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => BlockchainStats()));
                   },
                   child: Column(
                     children: [

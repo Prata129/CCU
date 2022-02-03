@@ -20,7 +20,8 @@ class SongRepo {
       'artist': doc['artist'],
       'description': doc['description'],
       'features': doc['features'],
-      'path': doc['path']
+      'path': doc['path'],
+      'inPlaylist': doc['inPlaylist']
     };
   }
 
@@ -30,12 +31,30 @@ class SongRepo {
     await for (final snapshots in snapshot) {
       for (final docs in snapshots.docChanges) {
         yield Model.Song(
-          id: docs.doc.id, 
-          artist: docs.doc["artist"], 
-          description: docs.doc["description"], 
-          features: docs.doc["features"], 
-          name: docs.doc["name"]);
+          id: docs.doc.id,
+          artist: docs.doc["artist"],
+          description: docs.doc["description"],
+          features: docs.doc["features"],
+          name: docs.doc["name"],
+        );
       }
+    }
+  }
+
+  Stream<Model.Song> getArtistSongs(String artist) async* {
+    final snapshot = await _ref.where('artist', isEqualTo: artist).get();
+
+    final doc = snapshot.docs[0];
+
+    for (final changes in snapshot.docChanges) {
+      yield Model.Song(
+        id: changes.doc.id,
+        artist: changes.doc["artist"],
+        description: changes.doc["description"],
+        features: changes.doc["features"],
+        name: changes.doc["name"],
+        //inPlaylist: changes.doc["inPlaylist"],
+      );
     }
   }
 }

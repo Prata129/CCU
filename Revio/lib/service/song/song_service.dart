@@ -15,6 +15,7 @@ class SongService {
       'description': description,
       'features': features,
       'path': path,
+      'inPlaylist': false,
     };
   }
 

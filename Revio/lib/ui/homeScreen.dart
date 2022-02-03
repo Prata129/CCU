@@ -306,7 +306,7 @@ class _HomePageState extends State<HomePage> {
                 child: ListView(scrollDirection: Axis.horizontal, children: [
                   Column(
                     children: [
-                      Padding(
+                      Expanded(child: Padding(
                         padding: const EdgeInsets.only(top: 3),
                         child: SizedBox(
                             width: 140,
@@ -356,9 +356,118 @@ class _HomePageState extends State<HomePage> {
                                 ),
                               )
                             ])),
-                      )
+                        ),
+                      ),
                     ],
                   ),
+                  Expanded(child: Padding(
+                        padding: const EdgeInsets.only(top: 3, left: 3),
+                        child: SizedBox(
+                            width: 140,
+                            height: 140,
+                            child: Stack(children: <Widget>[
+                              Container(
+                                decoration: BoxDecoration(
+                                  image: const DecorationImage(
+                                    fit: BoxFit.fill,
+                                    image: AssetImage(
+                                      'assets/images/house.png',
+                                    ),
+                                  ),
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
+                              ),
+                              Container(
+                                decoration: BoxDecoration(
+                                  gradient: LinearGradient(
+                                      begin: FractionalOffset.topCenter,
+                                      end: FractionalOffset.bottomCenter,
+                                      colors: [
+                                        Colors.black.withOpacity(0),
+                                        Colors.black,
+                                      ],
+                                      stops: const [
+                                        0,
+                                        1
+                                      ]),
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
+                              ),
+                              Container(
+                                child: const Align(
+                                  alignment: Alignment
+                                      .bottomCenter, // Align however you like (i.e .centerRight, centerLeft)
+                                  child: Padding(
+                                    padding: EdgeInsets.all(5),
+                                    child: Text(
+                                      'Style',
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 18,
+                                          color: Colors.white),
+                                    ),
+                                  ),
+                                ),
+                              )
+                            ])),
+                        )
+                      ),
+
+                      Expanded(child: Padding(
+                        padding: const EdgeInsets.only(top: 3, left: 3),
+                        child: SizedBox(
+                            width: 140,
+                            height: 140,
+                            child: Stack(children: <Widget>[
+                              Container(
+                                decoration: BoxDecoration(
+                                  image: const DecorationImage(
+                                    fit: BoxFit.fill,
+                                    image: AssetImage(
+                                      'assets/images/nosalive.png',
+                                    ),
+                                  ),
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
+                              ),
+                              Container(
+                                decoration: BoxDecoration(
+                                  gradient: LinearGradient(
+                                      begin: FractionalOffset.topCenter,
+                                      end: FractionalOffset.bottomCenter,
+                                      colors: [
+                                        Colors.black.withOpacity(0),
+                                        Colors.black,
+                                      ],
+                                      stops: const [
+                                        0,
+                                        1
+                                      ]),
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
+                              ),
+                              Container(
+                                child: const Align(
+                                  alignment: Alignment
+                                      .bottomCenter, // Align however you like (i.e .centerRight, centerLeft)
+                                  child: Padding(
+                                    padding: EdgeInsets.all(5),
+                                    child: Text(
+                                      'Event',
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 18,
+                                          color: Colors.white),
+                                    ),
+                                  ),
+                                ),
+                              )
+                            ])),
+                        )
+                      ),
+
+
+
                 ]),
               ),
             ],
@@ -389,7 +498,7 @@ class _HomePageState extends State<HomePage> {
                 child: ListView(scrollDirection: Axis.horizontal, children: [
                   Column(
                     children: [
-                      Padding(
+                      Expanded(child: Padding(
                         padding: const EdgeInsets.only(top: 3),
                         child: SizedBox(
                             width: 140,
@@ -400,7 +509,7 @@ class _HomePageState extends State<HomePage> {
                                   image: const DecorationImage(
                                     fit: BoxFit.fill,
                                     image: AssetImage(
-                                      'assets/images/adele25.jpg',
+                                      'assets/images/EDM.png',
                                     ),
                                   ),
                                   borderRadius: BorderRadius.circular(10),
@@ -429,7 +538,7 @@ class _HomePageState extends State<HomePage> {
                                   child: Padding(
                                     padding: EdgeInsets.all(5),
                                     child: Text(
-                                      'Artists',
+                                      'Style',
                                       style: TextStyle(
                                           fontWeight: FontWeight.bold,
                                           fontSize: 18,
@@ -439,40 +548,11 @@ class _HomePageState extends State<HomePage> {
                                 ),
                               )
                             ])),
-                      )
+                        ),
+                      ),
                     ],
                   ),
-                ]),
-              ),
-            ],
-          ),
-          Padding(
-            padding: const EdgeInsets.only(left: 5, top: 40.0),
-            child: Row(children: [
-              Container(
-                child: Text('Latest Arrivals',
-                    textAlign: TextAlign.left,
-                    style: GoogleFonts.roboto(
-                        color: Colors.white,
-                        fontSize: 28,
-                        fontWeight: FontWeight.bold)),
-              ),
-            ]),
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Container(
-                //margin: const EdgeInsets.only(top: 60, bottom: 30),
-                height: 146,
-                width: MediaQuery.of(context).size.width,
-                decoration: BoxDecoration(
-                  color: Color.fromARGB(213, 134, 134, 134),
-                ),
-                child: ListView(scrollDirection: Axis.horizontal, children: [
-                  Column(
-                    children: [
-                      Padding(
+                  Expanded(child: Padding(
                         padding: const EdgeInsets.only(top: 3),
                         child: SizedBox(
                             width: 140,
@@ -483,7 +563,7 @@ class _HomePageState extends State<HomePage> {
                                   image: const DecorationImage(
                                     fit: BoxFit.fill,
                                     image: AssetImage(
-                                      'assets/images/adele25.jpg',
+                                      'assets/images/SumolSummerFest.png',
                                     ),
                                   ),
                                   borderRadius: BorderRadius.circular(10),
@@ -512,7 +592,7 @@ class _HomePageState extends State<HomePage> {
                                   child: Padding(
                                     padding: EdgeInsets.all(5),
                                     child: Text(
-                                      'Artists',
+                                      'Events',
                                       style: TextStyle(
                                           fontWeight: FontWeight.bold,
                                           fontSize: 18,
@@ -522,40 +602,9 @@ class _HomePageState extends State<HomePage> {
                                 ),
                               )
                             ])),
-                      )
-                    ],
-                  ),
-                ]),
-              ),
-            ],
-          ),
-          Padding(
-            padding: const EdgeInsets.only(left: 5, top: 40.0),
-            child: Row(children: [
-              Container(
-                child: Text('Latest Arrivals',
-                    textAlign: TextAlign.left,
-                    style: GoogleFonts.roboto(
-                        color: Colors.white,
-                        fontSize: 28,
-                        fontWeight: FontWeight.bold)),
-              ),
-            ]),
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Container(
-                //margin: const EdgeInsets.only(top: 60, bottom: 30),
-                height: 146,
-                width: MediaQuery.of(context).size.width,
-                decoration: BoxDecoration(
-                  color: Color.fromARGB(213, 134, 134, 134),
-                ),
-                child: ListView(scrollDirection: Axis.horizontal, children: [
-                  Column(
-                    children: [
-                      Padding(
+                        ),
+                      ),
+                      Expanded(child: Padding(
                         padding: const EdgeInsets.only(top: 3),
                         child: SizedBox(
                             width: 140,
@@ -566,7 +615,7 @@ class _HomePageState extends State<HomePage> {
                                   image: const DecorationImage(
                                     fit: BoxFit.fill,
                                     image: AssetImage(
-                                      'assets/images/adele25.jpg',
+                                      'assets/images/VodafoneParedesDeCoura.png',
                                     ),
                                   ),
                                   borderRadius: BorderRadius.circular(10),
@@ -595,7 +644,7 @@ class _HomePageState extends State<HomePage> {
                                   child: Padding(
                                     padding: EdgeInsets.all(5),
                                     child: Text(
-                                      'Artists',
+                                      'Events',
                                       style: TextStyle(
                                           fontWeight: FontWeight.bold,
                                           fontSize: 18,
@@ -605,9 +654,8 @@ class _HomePageState extends State<HomePage> {
                                 ),
                               )
                             ])),
-                      )
-                    ],
-                  ),
+                        ),
+                      ),
                 ]),
               ),
             ],

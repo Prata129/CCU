@@ -39,7 +39,7 @@ class _LoginPageState extends State<LoginPage> {
         child: Column(
           children: <Widget>[
             Padding(
-              padding: const EdgeInsets.only(top: 0),
+              padding: const EdgeInsets.only(top: 120),
               child: Center(
                 child: Container(
                     width: MediaQuery.of(context).size.width,
@@ -81,9 +81,10 @@ class _LoginPageState extends State<LoginPage> {
               ),
             ),
             Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
                 Container(
-                  margin: const EdgeInsets.only(left: 30, top: 30),
+                  margin: const EdgeInsets.only(top: 30),
                   height: 57,
                   width: 152,
                   decoration: BoxDecoration(
@@ -106,7 +107,7 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                 ),
                 Container(
-                  margin: const EdgeInsets.only(left: 50, top: 30),
+                  margin: const EdgeInsets.only(top: 30),
                   height: 57,
                   width: 152,
                   decoration: BoxDecoration(
@@ -133,9 +134,6 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Title"),
-      ),
       body: Consumer<LoginModel>(
           builder: (context, viewModel, child) =>
               _authScreen(context, viewModel)),

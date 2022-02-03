@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:revio/ui/artist/artistStats.dart';
 import 'package:revio/ui/settingsScreen.dart';
 import 'package:revio/ui/myMusic.dart';
 import 'package:revio/ui/myFans.dart';
@@ -95,7 +96,12 @@ class _ArtistHomeScreen extends State<ArtistHomeScreen> {
                     color: Color.fromARGB(214, 196, 196, 196),
                     borderRadius: BorderRadius.circular(10)),
                 child: InkWell(
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => ArtistStatsScreen()));
+                  },
                   child: Column(
                     children: [
                       Row(children: [

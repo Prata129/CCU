@@ -8,6 +8,7 @@ import 'package:revio/service/user/user_creation_service.dart';
 import 'package:revio/ui/ArtistHomeScreen.dart';
 import 'package:revio/ui/FolderScreen.dart';
 import 'package:revio/ui/artist/albumScreen.dart';
+import 'package:revio/ui/artist/artistStats.dart';
 import 'package:revio/ui/auth/login_model.dart';
 import 'package:revio/ui/auth/signup_model.dart';
 import 'package:revio/ui/auth/loginpage.dart';

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:revio/ui/buyNosAlive.dart';
 
 const double SQUARE_SIZE = 137;
 
@@ -12,7 +13,7 @@ class NosAliveEvent extends StatelessWidget {
           children:[
             AppBar(
               leading: IconButton(
-                  icon: Icon(Icons.arrow_back_ios), onPressed: () {}),
+                  icon: Icon(Icons.arrow_back_ios), onPressed: () => Navigator.of(context).pop(),),
               iconTheme: IconThemeData(color: Color(0xFFC2C2C2)),
               backgroundColor: Color(0xFF222222),
               title: Text("Nos Alive'22",
@@ -71,7 +72,10 @@ class NosAliveEvent extends StatelessWidget {
                                 color: const Color(0xFFE5BE58),
                                 borderRadius: BorderRadius.circular(10)),
                               child: TextButton(
-                                onPressed: () {},
+                                onPressed: () {
+                                  Navigator.push(context,
+                                    MaterialPageRoute(builder: (context) => BuyNosAlive()));
+                                },
                                 child: const Text(
                                   'Buy',
                                   style: TextStyle(color: Colors.black, fontSize: 16),

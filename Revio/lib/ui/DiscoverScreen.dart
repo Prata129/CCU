@@ -652,8 +652,6 @@ class GenreArtists extends StatelessWidget {
                 style: TextStyle(fontSize: 32.0, color: Color(0xFFC2C2C2))),
             elevation: 0,
           ),
-
-//**************************NAO ESTA BONITO************************************ */
           StreamBuilder<List<User>>(
               stream: getUserArtists(),
               builder: (context, snapshot) {

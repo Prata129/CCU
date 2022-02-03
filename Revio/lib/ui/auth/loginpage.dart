@@ -6,6 +6,7 @@ import 'package:revio/service/auth/authentication_state.dart';
 import 'package:revio/ui/auth/login_model.dart';
 import 'package:revio/ui/buyNosAlive.dart';
 import 'package:revio/ui/manager.dart';
+import 'package:revio/ui/artistManager.dart';
 import 'package:revio/ui/auth/signuppage.dart';
 
 class LoginPage extends StatefulWidget {
@@ -96,8 +97,10 @@ class _LoginPageState extends State<LoginPage> {
                       password: passwordController.text.trim()
                       ); */
                       viewModel.loginUser();
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => Manager()));
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => ArtistManager()));
                     },
                     child: const Text(
                       'Login',

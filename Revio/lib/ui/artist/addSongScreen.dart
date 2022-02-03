@@ -176,8 +176,9 @@ class _AddSongState extends State<AddSongScreen> {
                                           Navigator.push(
                                               context,
                                               MaterialPageRoute(
-                                                  builder: (context) =>
-                                                      MyMusic()));
+                                                  builder: (context) => MyMusic(
+                                                      artist:
+                                                          viewModel.artist)));
                                         },
                                       ),
                                     ]))
@@ -210,16 +211,20 @@ class _AddSongState extends State<AddSongScreen> {
 
     final fileName = basename(file!.path);
     final destination = 'files/$fileName';
-    viewModel.path = destination;
     if (FirebaseAuth.instance.currentUser != null) {
       viewModel.artist = FirebaseAuth.instance.currentUser!.email.toString();
     } else {
       print('NO SESSION');
     }
+
+    final ref = FirebaseStorage.instance.ref().child(destination);
+    task = FirebaseApi.uploadFile(ref, file!);
+
+    viewModel.path = await ref.getDownloadURL();
     viewModel.addSong();
 
-    task = FirebaseApi.uploadFile(destination, file!);
-    
+    task = FirebaseApi.uploadFile(ref, file!);
+
     setState(() {});
   }
 

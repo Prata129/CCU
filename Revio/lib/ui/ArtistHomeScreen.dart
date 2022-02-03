@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:revio/ui/settingsScreen.dart';
+import 'package:revio/ui/blockchain.dart';
 import 'package:revio/ui/myMusic.dart';
 import 'package:revio/ui/myFans.dart';
 import 'package:revio/data/user_repo.dart';
@@ -95,7 +96,10 @@ class _ArtistHomeScreen extends State<ArtistHomeScreen> {
                     color: Color.fromARGB(214, 196, 196, 196),
                     borderRadius: BorderRadius.circular(10)),
                 child: InkWell(
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => Contract()));
+                  },
                   child: Column(
                     children: [
                       Row(children: [
@@ -212,8 +216,11 @@ class _ArtistHomeScreen extends State<ArtistHomeScreen> {
                     borderRadius: BorderRadius.circular(10)),
                 child: InkWell(
                   onTap: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => MyMusic()));
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) =>
+                                MyMusic(artist: getUsername())));
                   },
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.center,

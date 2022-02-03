@@ -1,5 +1,5 @@
-const Investment = artifacts.require("Investment");
+const Revio = artifacts.require("Revio");
 
 module.exports = function (deployer) {
-    deployer.deploy(Investment);
+    deployer.deploy(Revio);
 };

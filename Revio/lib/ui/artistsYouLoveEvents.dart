@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:revio/ui/nosAliveEvent.dart';
 
 const double SQUARE_SIZE = 61;
 
@@ -12,7 +13,7 @@ class ArtistsYouLoveEvents extends StatelessWidget {
           children: <Widget>[
             AppBar(
               leading: IconButton(
-                  icon: Icon(Icons.arrow_back_ios), onPressed: () {}),
+                  icon: Icon(Icons.arrow_back_ios), onPressed: () => Navigator.of(context).pop(),),
               iconTheme: IconThemeData(color: Color(0xFFC2C2C2)),
               backgroundColor: Color(0xFF222222),
               title: Text("Artists You Love",
@@ -20,7 +21,8 @@ class ArtistsYouLoveEvents extends StatelessWidget {
               elevation: 0,
             ),
 
-            Container(
+            InkWell(
+              child: Container(
               alignment: Alignment.centerLeft,
               margin: const EdgeInsets.only(top: 20),
               height: 68,
@@ -47,6 +49,12 @@ class ArtistsYouLoveEvents extends StatelessWidget {
               ],
               ),
             ),
+              onTap: (){
+                Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => NosAliveEvent()));
+              },
+            ),
+            
 
           Container(
               alignment: Alignment.centerLeft,

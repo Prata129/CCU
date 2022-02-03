@@ -22,14 +22,25 @@ class UserRepo {
         .get();
 
     final doc = snapshot.docs[0]; //bad idea?
-    return Model.User(
-      id: doc.id,
-      email: doc['email'],
-      displayName: doc['displayName'],
-      isArtist: doc['isArtist'],
-      avatarUrl: doc['avatarUrl'],
-      genre: doc['genre'],
-    );
+    if (doc['isArtist']) {
+      return Model.User(
+        id: doc.id,
+        email: doc['email'],
+        displayName: doc['displayName'],
+        isArtist: doc['isArtist'],
+        avatarUrl: doc['avatarUrl'],
+        genre: doc['genre'],
+      );
+    } else {
+      return Model.User(
+        id: doc.id,
+        email: doc['email'],
+        displayName: doc['displayName'],
+        isArtist: doc['isArtist'],
+        avatarUrl: doc['avatarUrl']
+      );
+    }
+
   }
 
   Future<CollectionReference<Map<String, dynamic>>>
@@ -55,6 +66,12 @@ class UserRepo {
     return val;
   }
 
+  Future<bool> isArtist() async {
+    bool val = false;
+    Future<Model.User> currentUser = getUser();
+    currentUser.then((value) => val = value.isArtist);
+    return val;
+  }
   Future<DocumentReference> addNewArtist(Artist artist) async {
     return await getArtistsSubCollection()
         .then((subCollection) => subCollection.add(artist.toMap()));

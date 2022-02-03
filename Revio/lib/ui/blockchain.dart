@@ -39,7 +39,7 @@ class _Contract extends State<Contract> {
   }
 
   String privateKey =
-      'b416b2c6a36be58db13d237850909d75ef5d37f9c32475cd10e0f2675a3ae389';
+      '42a087be8642a245f623f6976ea2dcc40f5520c12ae2737891433d627c476336';
   late Credentials credentials;
   late EthereumAddress myAddress;
 

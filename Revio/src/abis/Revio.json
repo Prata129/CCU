@@ -74,7 +74,7 @@
   "sourceMap": "166:652:1:-;;;268:110;8:9:-1;5:2;;;30:1;27;20:12;5:2;268:110:1;308:1;299:6;:10;;;;335:1;320:12;:16;;;;369:1;347:19;:23;;;;166:652;;;;;;",
   "deployedSourceMap": "166:652:1:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;166:652:1;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;386:71;;;:::i;:::-;;;;;;;;;;;;;;;;;;;548:155;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;548:155:1;;;;;;;;;;;;;;;;;:::i;:::-;;707:108;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;707:108:1;;;;;;;;;;;;;;;;;:::i;:::-;;461:83;;;:::i;:::-;;;;;;;;;;;;;;;;;;;386:71;428:6;447;;440:13;;386:71;:::o;548:155::-;633:19;;623:6;608:12;;:21;:44;605:95;;686:6;670:12;;:22;;;;;;;;;;;605:95;548:155;:::o;707:108::-;775:1;765:6;756;;:15;:20;753:59;;798:6;788;;:16;;;;;;;;;;;753:59;707:108;:::o;461:83::-;509:6;528:12;;521:19;;461:83;:::o",
   "source": "// SPDX-License-Identifier: GPL-3.0\r\n\r\npragma solidity >=0.4.22 <0.9.0;\r\n\r\n/** \r\n * @title Ballot\r\n * @dev Implements voting process along with vote delegation\r\n */\r\ncontract Revio{\r\n    int256 wallet;\r\n    int256 subscription;\r\n    int256 minimumSubscription;\r\n\r\n    constructor() public{\r\n        wallet = 0;\r\n        subscription = 0;\r\n        minimumSubscription = 7;\r\n    }\r\n\r\n    function getWallet() public view returns (int256) {\r\n return wallet;\r\n}\r\n\r\nfunction getSubscription() public view returns (int256) {\r\n return subscription;\r\n}\r\n\r\nfunction changeSubscription(int256 amount) public {\r\n    if(subscription + amount >= minimumSubscription)\r\n    {\r\n        subscription += amount;\r\n    }\r\n}\r\n\r\nfunction addFunds(int256 amount) public{\r\n    if(wallet + amount >= 0){\r\n        wallet += amount;\r\n    }\r\n}\r\n}",
-  "sourcePath": "C:\\TRABALHO\\CCU\\CCU\\Revio\\contracts\\coinio.sol",
+  "sourcePath": "D:\\OneDrive\\Documents\\CCU\\CCU\\Revio\\contracts\\coinio.sol",
   "ast": {
     "absolutePath": "project:/contracts/coinio.sol",
     "exportedSymbols": {
@@ -1929,12 +1929,13 @@
     "5777": {
       "events": {},
       "links": {},
-      "address": "0xcc653F001A728fbAFe0a807cB990f14ad19822F1",
-      "transactionHash": "0x9f01caa48519eb7d77d88ed57cee4de28467498c1a72ba42041f4aea013b4256"
+      "address": "0x8d646edac3A97411620be2471E6fe0204f80f440",
+      "transactionHash": "0xbead73cd349aefa40b6628819eb183bee7f16f31c27a717800466f67d608ce7d"
     }
   },
   "schemaVersion": "3.4.4",
-  "updatedAt": "2022-02-03T14:45:49.894Z",
+  "updatedAt": "2022-02-03T15:07:09.530Z",
+  "networkType": "ethereum",
   "devdoc": {
     "details": "Implements voting process along with vote delegation",
     "methods": {},

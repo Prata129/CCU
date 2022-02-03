@@ -37,7 +37,7 @@ class AuthenticationService {
       {required String email,
       required String password,
       required String displayName,
-      required bool? isArtist,
+      required bool isArtist,
       String? genre = ""}) async {
     try {
       await _firebaseAuth.createUserWithEmailAndPassword(

@@ -13,7 +13,7 @@ class SignUpModel extends ChangeNotifier {
   String _password = "";
   String _confirmedPassword = "";
   String _displayName = "";
-  bool? _isArtist = false;
+  bool _isArtist = false;
   String? _genre;
   AuthState? _state;
 
@@ -66,7 +66,7 @@ class SignUpModel extends ChangeNotifier {
     return "Password must be at least 6 characters long.";
   }
 
-  void validateArtist(bool? value) {
+  void validateArtist(bool value) {
     this._isArtist = value;
   }
 

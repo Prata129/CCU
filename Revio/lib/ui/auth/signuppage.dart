@@ -15,7 +15,7 @@ class SignUp extends StatefulWidget {
 }
 
 class _SignUpState extends State<SignUp> {
-  bool? valuefirst = false;
+  bool valuefirst = false;
   String? value;
   final items = ['Pop', 'EDM', 'Rock', 'Fado', 'Funk', 'House', 'Kizomba'];
 
@@ -132,8 +132,9 @@ class _SignUpState extends State<SignUp> {
                 value: this.valuefirst,
                 onChanged: (bool? value) {
                   setState(() {
-                    viewModel.validateArtist(value);
-                    this.valuefirst = value;
+                    this.valuefirst = value!;
+                    viewModel.validateArtist(this.valuefirst);
+                    
                   });
                 },
               ),

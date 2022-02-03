@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:revio/ui/settingsScreen.dart';
+import 'package:revio/ui/blockchainStats.dart';
 import 'package:web3dart/web3dart.dart';
 import 'package:http/http.dart' as http;
 
@@ -173,7 +174,10 @@ class HomePage extends StatefulWidget {
                     color: Color.fromARGB(214, 196, 196, 196),
                     borderRadius: BorderRadius.circular(10)),
                 child: InkWell(
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.push(context,
+                                    MaterialPageRoute(builder: (context) => BlockchainStats()));
+                  },
                   child: Column(
                     children: [
                       Row(children: [

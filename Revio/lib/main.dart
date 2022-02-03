@@ -25,6 +25,7 @@ import 'package:revio/ui/nosAliveEvent.dart';
 import 'package:revio/ui/smartContract.dart';
 import 'package:revio/ui/mySongsScreen.dart';
 import 'package:revio/ui/buyNosAlive.dart';
+import 'package:revio/ui/blockchainStats.dart';
 
 import 'data/song_repo.dart';
 import 'models/song_model.dart';

@@ -37,4 +37,10 @@ function addFunds(int256 amount) public{
         wallet += amount;
     }
 }
+
+function withdraw(int256 amount) public{
+    if(wallet - amount >= 0){
+        wallet -= amount;
+    }
+}
 }

@@ -1,6 +1,11 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'dart:convert';
+
+import 'package:flutter/services.dart';
+import 'package:http/http.dart';
 import 'package:flutter/material.dart';
+import 'package:web3dart/web3dart.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:revio/ui/artist/artistStats.dart';
 import 'package:revio/ui/settingsScreen.dart';
@@ -32,7 +37,7 @@ class _ArtistHomeScreen extends State<ArtistHomeScreen> {
   double getUserMoney() {
     _userRepo.getUser().then((User user) {
       setState(() {
-        _money = 0;
+        _money = 42;
       });
     });
     return _money;
@@ -98,12 +103,12 @@ class _ArtistHomeScreen extends State<ArtistHomeScreen> {
                     borderRadius: BorderRadius.circular(10)),
                 child: InkWell(
                   onTap: () {
-                    /*Navigator.push(
+                    Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => ArtistStatsScreen()));*/
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => Contract()));
+                            builder: (context) => ArtistStatsScreen()));
+                    /*Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => Contract()));*/
 
                     //RAFAEL: I COMMENTED TO ALLOW THE BUTTON TO GO TO
                     //ARTIST STATS BUT THIS WAS BEING USED TO TRY GANACHE ?
@@ -179,7 +184,7 @@ class _ArtistHomeScreen extends State<ArtistHomeScreen> {
                         Expanded(
                           flex: 1,
                           child: Text(
-                            ' ${getUserMoney() * 7 + 38}',
+                            ' ${getUserMoney() * 0.15}',
                             style: TextStyle(
                                 fontWeight: FontWeight.bold,
                                 fontSize: 14,

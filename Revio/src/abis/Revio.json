@@ -66,23 +66,38 @@
       "payable": false,
       "stateMutability": "nonpayable",
       "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "internalType": "int256",
+          "name": "amount",
+          "type": "int256"
+        }
+      ],
+      "name": "withdraw",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
     }
   ],
-  "metadata": "{\"compiler\":{\"version\":\"0.5.16+commit.9c3226ce\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"int256\",\"name\":\"amount\",\"type\":\"int256\"}],\"name\":\"addFunds\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"int256\",\"name\":\"amount\",\"type\":\"int256\"}],\"name\":\"changeSubscription\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"getSubscription\",\"outputs\":[{\"internalType\":\"int256\",\"name\":\"\",\"type\":\"int256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"getWallet\",\"outputs\":[{\"internalType\":\"int256\",\"name\":\"\",\"type\":\"int256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"details\":\"Implements voting process along with vote delegation\",\"methods\":{},\"title\":\"Ballot\"},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"project:/contracts/coinio.sol\":\"Revio\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"project:/contracts/coinio.sol\":{\"keccak256\":\"0x707ba03e214ff119c8280921e5d180ee3bf402249eaf581e02c2b8c002278fe0\",\"urls\":[\"bzz-raw://4e6c2f64e3cad5b1f938c3159795311fe9b36076bfc6d579a976620abead88fb\",\"dweb:/ipfs/QmNjqgy9p3F7G56ySX8iRTVQUn6CFbQucWk8WbanmLr7UY\"]}},\"version\":1}",
-  "bytecode": "0x608060405234801561001057600080fd5b506000808190555060006001819055506007600281905550610171806100376000396000f3fe608060405234801561001057600080fd5b506004361061004c5760003560e01c80631329960414610051578063b2d923091461006f578063c38210231461009d578063ff0b906c146100cb575b600080fd5b6100596100e9565b6040518082815260200191505060405180910390f35b61009b6004803603602081101561008557600080fd5b81019080803590602001909291905050506100f2565b005b6100c9600480360360208110156100b357600080fd5b8101908080359060200190929190505050610113565b005b6100d3610132565b6040518082815260200191505060405180910390f35b60008054905090565b60025481600154011261011057806001600082825401925050819055505b50565b600081600054011261012f578060008082825401925050819055505b50565b600060015490509056fea265627a7a7231582053f0491cd068cc5f19b2f3e1848be5c810b67c2a183b2ee5ce64b0839320430664736f6c63430005100032",
-  "deployedBytecode": "0x608060405234801561001057600080fd5b506004361061004c5760003560e01c80631329960414610051578063b2d923091461006f578063c38210231461009d578063ff0b906c146100cb575b600080fd5b6100596100e9565b6040518082815260200191505060405180910390f35b61009b6004803603602081101561008557600080fd5b81019080803590602001909291905050506100f2565b005b6100c9600480360360208110156100b357600080fd5b8101908080359060200190929190505050610113565b005b6100d3610132565b6040518082815260200191505060405180910390f35b60008054905090565b60025481600154011261011057806001600082825401925050819055505b50565b600081600054011261012f578060008082825401925050819055505b50565b600060015490509056fea265627a7a7231582053f0491cd068cc5f19b2f3e1848be5c810b67c2a183b2ee5ce64b0839320430664736f6c63430005100032",
-  "sourceMap": "166:652:1:-;;;268:110;8:9:-1;5:2;;;30:1;27;20:12;5:2;268:110:1;308:1;299:6;:10;;;;335:1;320:12;:16;;;;369:1;347:19;:23;;;;166:652;;;;;;",
-  "deployedSourceMap": "166:652:1:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;166:652:1;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;386:71;;;:::i;:::-;;;;;;;;;;;;;;;;;;;548:155;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;548:155:1;;;;;;;;;;;;;;;;;:::i;:::-;;707:108;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;707:108:1;;;;;;;;;;;;;;;;;:::i;:::-;;461:83;;;:::i;:::-;;;;;;;;;;;;;;;;;;;386:71;428:6;447;;440:13;;386:71;:::o;548:155::-;633:19;;623:6;608:12;;:21;:44;605:95;;686:6;670:12;;:22;;;;;;;;;;;605:95;548:155;:::o;707:108::-;775:1;765:6;756;;:15;:20;753:59;;798:6;788;;:16;;;;;;;;;;;753:59;707:108;:::o;461:83::-;509:6;528:12;;521:19;;461:83;:::o",
-  "source": "// SPDX-License-Identifier: GPL-3.0\r\n\r\npragma solidity >=0.4.22 <0.9.0;\r\n\r\n/** \r\n * @title Ballot\r\n * @dev Implements voting process along with vote delegation\r\n */\r\ncontract Revio{\r\n    int256 wallet;\r\n    int256 subscription;\r\n    int256 minimumSubscription;\r\n\r\n    constructor() public{\r\n        wallet = 0;\r\n        subscription = 0;\r\n        minimumSubscription = 7;\r\n    }\r\n\r\n    function getWallet() public view returns (int256) {\r\n return wallet;\r\n}\r\n\r\nfunction getSubscription() public view returns (int256) {\r\n return subscription;\r\n}\r\n\r\nfunction changeSubscription(int256 amount) public {\r\n    if(subscription + amount >= minimumSubscription)\r\n    {\r\n        subscription += amount;\r\n    }\r\n}\r\n\r\nfunction addFunds(int256 amount) public{\r\n    if(wallet + amount >= 0){\r\n        wallet += amount;\r\n    }\r\n}\r\n}",
+  "metadata": "{\"compiler\":{\"version\":\"0.5.16+commit.9c3226ce\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"int256\",\"name\":\"amount\",\"type\":\"int256\"}],\"name\":\"addFunds\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"int256\",\"name\":\"amount\",\"type\":\"int256\"}],\"name\":\"changeSubscription\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"getSubscription\",\"outputs\":[{\"internalType\":\"int256\",\"name\":\"\",\"type\":\"int256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[],\"name\":\"getWallet\",\"outputs\":[{\"internalType\":\"int256\",\"name\":\"\",\"type\":\"int256\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"internalType\":\"int256\",\"name\":\"amount\",\"type\":\"int256\"}],\"name\":\"withdraw\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"details\":\"Implements voting process along with vote delegation\",\"methods\":{},\"title\":\"Ballot\"},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"project:/contracts/coinio.sol\":\"Revio\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"project:/contracts/coinio.sol\":{\"keccak256\":\"0x6e173bf0e5c2def8e3c6c56f7df09026594a1e121430ec455e0d78eefd79df4e\",\"urls\":[\"bzz-raw://cd161de28b63abbc9b79f1ad489bc73d60bd353b87cb37332e213b99be0f6e3f\",\"dweb:/ipfs/QmeMy7yzqmwuSfqswPWEGbUiQPD2ZZ61Di8Gy4njdtcreD\"]}},\"version\":1}",
+  "bytecode": "0x608060405234801561001057600080fd5b5060008081905550600060018190555060076002819055506101c9806100376000396000f3fe608060405234801561001057600080fd5b50600436106100575760003560e01c8063132996041461005c5780637e62eab81461007a578063b2d92309146100a8578063c3821023146100d6578063ff0b906c14610104575b600080fd5b610064610122565b6040518082815260200191505060405180910390f35b6100a66004803603602081101561009057600080fd5b810190808035906020019092919050505061012b565b005b6100d4600480360360208110156100be57600080fd5b810190808035906020019092919050505061014a565b005b610102600480360360208110156100ec57600080fd5b810190808035906020019092919050505061016b565b005b61010c61018a565b6040518082815260200191505060405180910390f35b60008054905090565b6000816000540312610147578060008082825403925050819055505b50565b60025481600154011261016857806001600082825401925050819055505b50565b6000816000540112610187578060008082825401925050819055505b50565b600060015490509056fea265627a7a723158203a0494609abd6adeb9ea6a9204e3a70a46822b0aa39397d55cc144c517c1c2af64736f6c63430005100032",
+  "deployedBytecode": "0x608060405234801561001057600080fd5b50600436106100575760003560e01c8063132996041461005c5780637e62eab81461007a578063b2d92309146100a8578063c3821023146100d6578063ff0b906c14610104575b600080fd5b610064610122565b6040518082815260200191505060405180910390f35b6100a66004803603602081101561009057600080fd5b810190808035906020019092919050505061012b565b005b6100d4600480360360208110156100be57600080fd5b810190808035906020019092919050505061014a565b005b610102600480360360208110156100ec57600080fd5b810190808035906020019092919050505061016b565b005b61010c61018a565b6040518082815260200191505060405180910390f35b60008054905090565b6000816000540312610147578060008082825403925050819055505b50565b60025481600154011261016857806001600082825401925050819055505b50565b6000816000540112610187578060008082825401925050819055505b50565b600060015490509056fea265627a7a723158203a0494609abd6adeb9ea6a9204e3a70a46822b0aa39397d55cc144c517c1c2af64736f6c63430005100032",
+  "sourceMap": "166:764:1:-;;;268:110;8:9:-1;5:2;;;30:1;27;20:12;5:2;268:110:1;308:1;299:6;:10;;;;335:1;320:12;:16;;;;369:1;347:19;:23;;;;166:764;;;;;;",
+  "deployedSourceMap": "166:764:1:-;;;;8:9:-1;5:2;;;30:1;27;20:12;5:2;166:764:1;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;386:71;;;:::i;:::-;;;;;;;;;;;;;;;;;;;819:108;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;819:108:1;;;;;;;;;;;;;;;;;:::i;:::-;;548:155;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;548:155:1;;;;;;;;;;;;;;;;;:::i;:::-;;707:108;;;;;;13:2:-1;8:3;5:11;2:2;;;29:1;26;19:12;2:2;707:108:1;;;;;;;;;;;;;;;;;:::i;:::-;;461:83;;;:::i;:::-;;;;;;;;;;;;;;;;;;;386:71;428:6;447;;440:13;;386:71;:::o;819:108::-;887:1;877:6;868;;:15;:20;865:59;;910:6;900;;:16;;;;;;;;;;;865:59;819:108;:::o;548:155::-;633:19;;623:6;608:12;;:21;:44;605:95;;686:6;670:12;;:22;;;;;;;;;;;605:95;548:155;:::o;707:108::-;775:1;765:6;756;;:15;:20;753:59;;798:6;788;;:16;;;;;;;;;;;753:59;707:108;:::o;461:83::-;509:6;528:12;;521:19;;461:83;:::o",
+  "source": "// SPDX-License-Identifier: GPL-3.0\r\n\r\npragma solidity >=0.4.22 <0.9.0;\r\n\r\n/** \r\n * @title Ballot\r\n * @dev Implements voting process along with vote delegation\r\n */\r\ncontract Revio{\r\n    int256 wallet;\r\n    int256 subscription;\r\n    int256 minimumSubscription;\r\n\r\n    constructor() public{\r\n        wallet = 0;\r\n        subscription = 0;\r\n        minimumSubscription = 7;\r\n    }\r\n\r\n    function getWallet() public view returns (int256) {\r\n return wallet;\r\n}\r\n\r\nfunction getSubscription() public view returns (int256) {\r\n return subscription;\r\n}\r\n\r\nfunction changeSubscription(int256 amount) public {\r\n    if(subscription + amount >= minimumSubscription)\r\n    {\r\n        subscription += amount;\r\n    }\r\n}\r\n\r\nfunction addFunds(int256 amount) public{\r\n    if(wallet + amount >= 0){\r\n        wallet += amount;\r\n    }\r\n}\r\n\r\nfunction withdraw(int256 amount) public{\r\n    if(wallet - amount >= 0){\r\n        wallet -= amount;\r\n    }\r\n}\r\n}",
   "sourcePath": "C:\\TRABALHO\\CCU\\CCU\\Revio\\contracts\\coinio.sol",
   "ast": {
     "absolutePath": "project:/contracts/coinio.sol",
     "exportedSymbols": {
       "Revio": [
-        107
+        124
       ]
     },
-    "id": 108,
+    "id": 125,
     "nodeType": "SourceUnit",
     "nodes": [
       {
@@ -105,9 +120,9 @@
         "contractKind": "contract",
         "documentation": "@title Ballot\n@dev Implements voting process along with vote delegation",
         "fullyImplemented": true,
-        "id": 107,
+        "id": 124,
         "linearizedBaseContracts": [
-          107
+          124
         ],
         "name": "Revio",
         "nodeType": "ContractDefinition",
@@ -117,7 +132,7 @@
             "id": 36,
             "name": "wallet",
             "nodeType": "VariableDeclaration",
-            "scope": 107,
+            "scope": 124,
             "src": "187:13:1",
             "stateVariable": true,
             "storageLocation": "default",
@@ -143,7 +158,7 @@
             "id": 38,
             "name": "subscription",
             "nodeType": "VariableDeclaration",
-            "scope": 107,
+            "scope": 124,
             "src": "207:19:1",
             "stateVariable": true,
             "storageLocation": "default",
@@ -169,7 +184,7 @@
             "id": 40,
             "name": "minimumSubscription",
             "nodeType": "VariableDeclaration",
-            "scope": 107,
+            "scope": 124,
             "src": "233:26:1",
             "stateVariable": true,
             "storageLocation": "default",
@@ -370,7 +385,7 @@
               "parameters": [],
               "src": "288:0:1"
             },
-            "scope": 107,
+            "scope": 124,
             "src": "268:110:1",
             "stateMutability": "nonpayable",
             "superFunction": null,
@@ -449,7 +464,7 @@
               ],
               "src": "427:8:1"
             },
-            "scope": 107,
+            "scope": 124,
             "src": "386:71:1",
             "stateMutability": "view",
             "superFunction": null,
@@ -528,7 +543,7 @@
               ],
               "src": "508:8:1"
             },
-            "scope": 107,
+            "scope": 124,
             "src": "461:83:1",
             "stateMutability": "view",
             "superFunction": null,
@@ -724,7 +739,7 @@
               "parameters": [],
               "src": "598:0:1"
             },
-            "scope": 107,
+            "scope": 124,
             "src": "548:155:1",
             "stateMutability": "nonpayable",
             "superFunction": null,
@@ -925,25 +940,226 @@
               "parameters": [],
               "src": "746:0:1"
             },
-            "scope": 107,
+            "scope": 124,
             "src": "707:108:1",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 122,
+              "nodeType": "Block",
+              "src": "858:69:1",
+              "statements": [
+                {
+                  "condition": {
+                    "argumentTypes": null,
+                    "commonType": {
+                      "typeIdentifier": "t_int256",
+                      "typeString": "int256"
+                    },
+                    "id": 115,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftExpression": {
+                      "argumentTypes": null,
+                      "commonType": {
+                        "typeIdentifier": "t_int256",
+                        "typeString": "int256"
+                      },
+                      "id": 113,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "leftExpression": {
+                        "argumentTypes": null,
+                        "id": 111,
+                        "name": "wallet",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 36,
+                        "src": "868:6:1",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_int256",
+                          "typeString": "int256"
+                        }
+                      },
+                      "nodeType": "BinaryOperation",
+                      "operator": "-",
+                      "rightExpression": {
+                        "argumentTypes": null,
+                        "id": 112,
+                        "name": "amount",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 108,
+                        "src": "877:6:1",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_int256",
+                          "typeString": "int256"
+                        }
+                      },
+                      "src": "868:15:1",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_int256",
+                        "typeString": "int256"
+                      }
+                    },
+                    "nodeType": "BinaryOperation",
+                    "operator": ">=",
+                    "rightExpression": {
+                      "argumentTypes": null,
+                      "hexValue": "30",
+                      "id": 114,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": true,
+                      "kind": "number",
+                      "lValueRequested": false,
+                      "nodeType": "Literal",
+                      "src": "887:1:1",
+                      "subdenomination": null,
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_rational_0_by_1",
+                        "typeString": "int_const 0"
+                      },
+                      "value": "0"
+                    },
+                    "src": "868:20:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "falseBody": null,
+                  "id": 121,
+                  "nodeType": "IfStatement",
+                  "src": "865:59:1",
+                  "trueBody": {
+                    "id": 120,
+                    "nodeType": "Block",
+                    "src": "889:35:1",
+                    "statements": [
+                      {
+                        "expression": {
+                          "argumentTypes": null,
+                          "id": 118,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "leftHandSide": {
+                            "argumentTypes": null,
+                            "id": 116,
+                            "name": "wallet",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 36,
+                            "src": "900:6:1",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_int256",
+                              "typeString": "int256"
+                            }
+                          },
+                          "nodeType": "Assignment",
+                          "operator": "-=",
+                          "rightHandSide": {
+                            "argumentTypes": null,
+                            "id": 117,
+                            "name": "amount",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 108,
+                            "src": "910:6:1",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_int256",
+                              "typeString": "int256"
+                            }
+                          },
+                          "src": "900:16:1",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_int256",
+                            "typeString": "int256"
+                          }
+                        },
+                        "id": 119,
+                        "nodeType": "ExpressionStatement",
+                        "src": "900:16:1"
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 123,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "withdraw",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 109,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 108,
+                  "name": "amount",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 123,
+                  "src": "837:13:1",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_int256",
+                    "typeString": "int256"
+                  },
+                  "typeName": {
+                    "id": 107,
+                    "name": "int256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "837:6:1",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_int256",
+                      "typeString": "int256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "836:15:1"
+            },
+            "returnParameters": {
+              "id": 110,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "858:0:1"
+            },
+            "scope": 124,
+            "src": "819:108:1",
             "stateMutability": "nonpayable",
             "superFunction": null,
             "visibility": "public"
           }
         ],
-        "scope": 108,
-        "src": "166:652:1"
+        "scope": 125,
+        "src": "166:764:1"
       }
     ],
-    "src": "39:779:1"
+    "src": "39:891:1"
   },
   "legacyAST": {
     "attributes": {
       "absolutePath": "project:/contracts/coinio.sol",
       "exportedSymbols": {
         "Revio": [
-          107
+          124
         ]
       }
     },
@@ -976,17 +1192,17 @@
           "documentation": "@title Ballot\n@dev Implements voting process along with vote delegation",
           "fullyImplemented": true,
           "linearizedBaseContracts": [
-            107
+            124
           ],
           "name": "Revio",
-          "scope": 108
+          "scope": 125
         },
         "children": [
           {
             "attributes": {
               "constant": false,
               "name": "wallet",
-              "scope": 107,
+              "scope": 124,
               "stateVariable": true,
               "storageLocation": "default",
               "type": "int256",
@@ -1012,7 +1228,7 @@
             "attributes": {
               "constant": false,
               "name": "subscription",
-              "scope": 107,
+              "scope": 124,
               "stateVariable": true,
               "storageLocation": "default",
               "type": "int256",
@@ -1038,7 +1254,7 @@
             "attributes": {
               "constant": false,
               "name": "minimumSubscription",
-              "scope": 107,
+              "scope": 124,
               "stateVariable": true,
               "storageLocation": "default",
               "type": "int256",
@@ -1070,7 +1286,7 @@
                 null
               ],
               "name": "",
-              "scope": 107,
+              "scope": 124,
               "stateMutability": "nonpayable",
               "superFunction": null,
               "visibility": "public"
@@ -1282,7 +1498,7 @@
                 null
               ],
               "name": "getWallet",
-              "scope": 107,
+              "scope": 124,
               "stateMutability": "view",
               "superFunction": null,
               "visibility": "public"
@@ -1378,7 +1594,7 @@
                 null
               ],
               "name": "getSubscription",
-              "scope": 107,
+              "scope": 124,
               "stateMutability": "view",
               "superFunction": null,
               "visibility": "public"
@@ -1474,7 +1690,7 @@
                 null
               ],
               "name": "changeSubscription",
-              "scope": 107,
+              "scope": 124,
               "stateMutability": "nonpayable",
               "superFunction": null,
               "visibility": "public"
@@ -1696,7 +1912,7 @@
                 null
               ],
               "name": "addFunds",
-              "scope": 107,
+              "scope": 124,
               "stateMutability": "nonpayable",
               "superFunction": null,
               "visibility": "public"
@@ -1910,16 +2126,241 @@
             "id": 106,
             "name": "FunctionDefinition",
             "src": "707:108:1"
+          },
+          {
+            "attributes": {
+              "documentation": null,
+              "implemented": true,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "withdraw",
+              "scope": 124,
+              "stateMutability": "nonpayable",
+              "superFunction": null,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "name": "amount",
+                      "scope": 123,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "int256",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "int256",
+                          "type": "int256"
+                        },
+                        "id": 107,
+                        "name": "ElementaryTypeName",
+                        "src": "837:6:1"
+                      }
+                    ],
+                    "id": 108,
+                    "name": "VariableDeclaration",
+                    "src": "837:13:1"
+                  }
+                ],
+                "id": 109,
+                "name": "ParameterList",
+                "src": "836:15:1"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 110,
+                "name": "ParameterList",
+                "src": "858:0:1"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "falseBody": null
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "commonType": {
+                            "typeIdentifier": "t_int256",
+                            "typeString": "int256"
+                          },
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "operator": ">=",
+                          "type": "bool"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "commonType": {
+                                "typeIdentifier": "t_int256",
+                                "typeString": "int256"
+                              },
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "operator": "-",
+                              "type": "int256"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 36,
+                                  "type": "int256",
+                                  "value": "wallet"
+                                },
+                                "id": 111,
+                                "name": "Identifier",
+                                "src": "868:6:1"
+                              },
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 108,
+                                  "type": "int256",
+                                  "value": "amount"
+                                },
+                                "id": 112,
+                                "name": "Identifier",
+                                "src": "877:6:1"
+                              }
+                            ],
+                            "id": 113,
+                            "name": "BinaryOperation",
+                            "src": "868:15:1"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "hexvalue": "30",
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": true,
+                              "lValueRequested": false,
+                              "subdenomination": null,
+                              "token": "number",
+                              "type": "int_const 0",
+                              "value": "0"
+                            },
+                            "id": 114,
+                            "name": "Literal",
+                            "src": "887:1:1"
+                          }
+                        ],
+                        "id": 115,
+                        "name": "BinaryOperation",
+                        "src": "868:20:1"
+                      },
+                      {
+                        "children": [
+                          {
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "isConstant": false,
+                                  "isLValue": false,
+                                  "isPure": false,
+                                  "lValueRequested": false,
+                                  "operator": "-=",
+                                  "type": "int256"
+                                },
+                                "children": [
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": null,
+                                      "overloadedDeclarations": [
+                                        null
+                                      ],
+                                      "referencedDeclaration": 36,
+                                      "type": "int256",
+                                      "value": "wallet"
+                                    },
+                                    "id": 116,
+                                    "name": "Identifier",
+                                    "src": "900:6:1"
+                                  },
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": null,
+                                      "overloadedDeclarations": [
+                                        null
+                                      ],
+                                      "referencedDeclaration": 108,
+                                      "type": "int256",
+                                      "value": "amount"
+                                    },
+                                    "id": 117,
+                                    "name": "Identifier",
+                                    "src": "910:6:1"
+                                  }
+                                ],
+                                "id": 118,
+                                "name": "Assignment",
+                                "src": "900:16:1"
+                              }
+                            ],
+                            "id": 119,
+                            "name": "ExpressionStatement",
+                            "src": "900:16:1"
+                          }
+                        ],
+                        "id": 120,
+                        "name": "Block",
+                        "src": "889:35:1"
+                      }
+                    ],
+                    "id": 121,
+                    "name": "IfStatement",
+                    "src": "865:59:1"
+                  }
+                ],
+                "id": 122,
+                "name": "Block",
+                "src": "858:69:1"
+              }
+            ],
+            "id": 123,
+            "name": "FunctionDefinition",
+            "src": "819:108:1"
           }
         ],
-        "id": 107,
+        "id": 124,
         "name": "ContractDefinition",
-        "src": "166:652:1"
+        "src": "166:764:1"
       }
     ],
-    "id": 108,
+    "id": 125,
     "name": "SourceUnit",
-    "src": "39:779:1"
+    "src": "39:891:1"
   },
   "compiler": {
     "name": "solc",
@@ -1934,7 +2375,7 @@
     }
   },
   "schemaVersion": "3.4.4",
-  "updatedAt": "2022-02-03T14:45:49.894Z",
+  "updatedAt": "2022-02-03T15:53:03.308Z",
   "devdoc": {
     "details": "Implements voting process along with vote delegation",
     "methods": {},

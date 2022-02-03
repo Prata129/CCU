@@ -14,6 +14,7 @@ import 'package:revio/ui/auth/loginpage.dart';
 import 'package:revio/service/auth/authentication_service.dart';
 import 'package:revio/ui/homeScreen.dart';
 import 'package:revio/ui/libraryScreen.dart';
+import 'package:revio/ui/manager.dart';
 import 'package:revio/ui/profile/profile_view.dart';
 import 'package:revio/ui/settingsScreen.dart';
 import 'package:revio/ui/aboutScreen.dart';
@@ -78,7 +79,7 @@ class AuthenticationWrapper extends StatelessWidget {
     final firebaseUser = context.watch<User?>();
 
     if (firebaseUser != null) {
-      return HomePage();
+      return Manager();
     }
     return const LoginPage();
   }

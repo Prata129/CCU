@@ -16,7 +16,7 @@ class FirebaseApi {
   static UploadTask? uploadBytes(String destination, Uint8List data) {
     try {
       final ref = FirebaseStorage.instance.ref(destination);
-
+      
       return ref.putData(data);
     } on FirebaseException catch (e) {
       return null;

@@ -36,8 +36,8 @@ class SongRepo {
           description: docs.doc["description"], 
           features: docs.doc["features"], 
           path: docs.doc["path"],
-          name: docs.doc["name"],
-          inPlaylist: docs.doc["inPlaylist"]);
+          name: docs.doc["name"]);
+          //inPlaylist: docs.doc["inPlaylist"]);
       }
     }
   }

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:revio/data/user_repo.dart';
 import 'package:revio/models/OneSong_model.dart';
 import 'package:revio/data/song_repo.dart';
+import 'package:revio/service/user/user_creation_service.dart';
 import 'package:revio/ui/songs/playScreen.dart';
 import 'package:revio/ui/songs/song_item.dart';
 
@@ -8,7 +10,7 @@ class MySongsPage extends StatelessWidget {
   MySongsPage({Key? key}) : super(key: key);
 
   final SongRepo _songRepo = SongRepo();
-
+  final UserRepo _userRepo = UserRepo();
   List<Song> _songs = [];
 
   List<Song> _handleSongLists(Song song) {
@@ -58,6 +60,7 @@ class MySongsPage extends StatelessWidget {
                             return GestureDetector(
                                 child: SongItem(song: snapshot.data![index]),
                                 onTap: () {
+                                  _userRepo.addArtist(snapshot.data![index].artist);
                                   Navigator.push(
                                       context,
                                       MaterialPageRoute(

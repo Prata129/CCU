@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -40,16 +42,50 @@ class UserRepo {
 
     return _ref.doc(doc.id).collection('artistas');
   }
-
-  void incrementTimesListened(String artistName) async {
-    getArtistsSubCollection().then((subCollection) => subCollection
-        .doc(artistName)
-        .update({'timesListened': FieldValue.increment(1)}));
+  bool isCollectionEmpty() {
+    bool val = false;
+      getArtistsSubCollection().then((subCollection) => {
+      subCollection.limit(1).get().then(
+        (value) => {
+          val = value.size > 0
+        }
+        )
+      }
+    );
+    return val;
   }
 
-  Future<DocumentReference> addArtist(Artist artist) async {
+  Future<DocumentReference> addNewArtist(Artist artist) async {
     return await getArtistsSubCollection()
         .then((subCollection) => subCollection.add(artist.toMap()));
+  }
+  Future<bool> checkIfDocExists(String docId) async {
+      // Get reference to Firestore collection
+      var collectionRef = await getArtistsSubCollection();
+
+      var doc = await collectionRef.where('name', isEqualTo: docId).get();
+      
+      return doc.size > 0;
+    
+  }
+
+  void addArtist(String artistName) async {
+    bool val = await checkIfDocExists(artistName);
+    if (val) {
+      var collectionRef = await getArtistsSubCollection();
+      var doc = await collectionRef.where('name', isEqualTo: artistName).get();
+      var docId = doc.docs[0].id;
+      getArtistsSubCollection().then((subCollection) => subCollection
+        .doc(docId)
+        .update({'times_listened': FieldValue.increment(1)}));
+    } else {
+        addNewArtist(Artist(
+        id: '',
+        name: artistName,
+        level: 0,
+        timesListened: 0,
+      ));
+    }
   }
 
   Stream<Artist> getFanArtists() async* {
@@ -65,9 +101,9 @@ class UserRepo {
       for (final changes in snapshots.docChanges) {
         yield Artist(
             id: changes.doc.id,
-            name: changes.doc["nome"],
+            name: changes.doc["name"],
             level: changes.doc["level"],
-            timesListened: changes.doc["timesListened"]);
+            timesListened: changes.doc["times_listened"]);
       }
     }
   }

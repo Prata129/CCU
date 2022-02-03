@@ -17,7 +17,7 @@ contract Revio{
         minimumSubscription = 7;
     }
 
-    function getWallet() public view returns (int256) {
+function getWallet() public view returns (int256) {
  return wallet;
 }
 

@@ -1,4 +1,6 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:revio/service/auth/authentication_service.dart';
 import 'package:revio/ui/aboutScreen.dart';
 import 'package:revio/ui/auth/loginpage.dart';
 
@@ -71,8 +73,11 @@ class SettingsScreen extends StatelessWidget {
                   )),
               child: TextButton(
                 onPressed: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => LoginPage()));
+                  FirebaseAuth.instance.signOut();
+                  Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                              builder: (context) => LoginPage()));
                 },
                 child: const Text(
                   'Logout',

@@ -1,13 +1,18 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:provider/provider.dart';
+import 'package:revio/main.dart';
 import 'package:revio/service/auth/authentication_service.dart';
 import 'package:revio/service/auth/authentication_state.dart';
 import 'package:revio/ui/auth/login_model.dart';
 import 'package:revio/ui/buyNosAlive.dart';
+import 'package:revio/ui/homeScreen.dart';
 import 'package:revio/ui/manager.dart';
 import 'package:revio/ui/artistManager.dart';
 import 'package:revio/ui/auth/signuppage.dart';
+
+import '../../data/user_repo.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -17,6 +22,7 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  UserRepo _userRepo = UserRepo();
   @override
   void initState() {
     super.initState();
@@ -98,10 +104,26 @@ class _LoginPageState extends State<LoginPage> {
                       password: passwordController.text.trim()
                       ); */
                       viewModel.loginUser();
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
+                      if (FirebaseAuth.instance.currentUser != null) {
+                        _userRepo.getUser().then((value) {
+                          print(value.email);
+                          if(value.isArtist) {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
                               builder: (context) => ArtistManager()));
+                          } else {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                              builder: (context) => Manager()));
+                          }
+                        });
+                      }
+                            // Navigator.push(
+                            //   context,
+                            //   MaterialPageRoute(
+                            //   builder: (context) => AuthenticationWrapper()));
                     },
                     child: const Text(
                       'Login',

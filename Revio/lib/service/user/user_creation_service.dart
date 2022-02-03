@@ -10,7 +10,7 @@ class UserCreationService {
   UserCreationService(this._userRepo);
 
   void CreateUser(
-      String email, String displayName, bool? isArtist, String? genre) async {
+      String email, String displayName, bool isArtist, String? genre) async {
     await _userRepo.saveUser(
       User(
         id: '',

@@ -2,7 +2,7 @@ class User {
   String id;
   String email;
   String displayName;
-  bool? isArtist;
+  bool isArtist;
   String avatarUrl;
 
   String? genre;

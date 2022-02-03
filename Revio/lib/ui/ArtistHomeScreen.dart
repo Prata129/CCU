@@ -14,6 +14,9 @@ import 'package:revio/ui/myMusic.dart';
 import 'package:revio/ui/myFans.dart';
 import 'package:revio/data/user_repo.dart';
 import 'package:revio/models/user_model.dart';
+import 'package:revio/ui/discoverScreen.dart';
+import 'package:revio/ui/nosAliveEvent.dart';
+import 'package:revio/ui/artistsYouLoveEvents.dart';
 
 class ArtistHomeScreen extends StatefulWidget {
   @override
@@ -376,47 +379,119 @@ class _ArtistHomeScreen extends State<ArtistHomeScreen> {
                 child: ListView(scrollDirection: Axis.horizontal, children: [
                   Column(
                     children: [
-                      Padding(
-                        padding: const EdgeInsets.only(top: 3),
-                        child: SizedBox(
-                            width: 140,
-                            height: 140,
-                            child: Stack(children: <Widget>[
-                              Container(
-                                decoration: BoxDecoration(
-                                  image: const DecorationImage(
-                                    fit: BoxFit.fill,
-                                    image: AssetImage(
-                                      'assets/images/adele25.jpg',
+                      Expanded(
+                        child: Padding(
+                          padding: const EdgeInsets.only(top: 3),
+                          child: SizedBox(
+                              width: 140,
+                              height: 140,
+                              child: Stack(children: <Widget>[
+                                Container(
+                                  decoration: BoxDecoration(
+                                    image: const DecorationImage(
+                                      fit: BoxFit.fill,
+                                      image: AssetImage(
+                                        'assets/images/adele25.jpg',
+                                      ),
                                     ),
+                                    borderRadius: BorderRadius.circular(10),
                                   ),
-                                  borderRadius: BorderRadius.circular(10),
+                                ),
+                                Container(
+                                  decoration: BoxDecoration(
+                                    gradient: LinearGradient(
+                                        begin: FractionalOffset.topCenter,
+                                        end: FractionalOffset.bottomCenter,
+                                        colors: [
+                                          Colors.black.withOpacity(0),
+                                          Colors.black,
+                                        ],
+                                        stops: const [
+                                          0,
+                                          1
+                                        ]),
+                                    borderRadius: BorderRadius.circular(10),
+                                  ),
+                                ),
+                                InkWell(
+                                    onTap: () {
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  GenreArtists(genre: 'Rock')));
+                                    },
+                                    child: Container(
+                                      child: const Align(
+                                        alignment: Alignment
+                                            .bottomCenter, // Align however you like (i.e .centerRight, centerLeft)
+                                        child: Padding(
+                                          padding: EdgeInsets.all(5),
+                                          child: Text(
+                                            'Artists',
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 18,
+                                                color: Colors.white),
+                                          ),
+                                        ),
+                                      ),
+                                    ))
+                              ])),
+                        ),
+                      ),
+                    ],
+                  ),
+                  Expanded(
+                      child: Padding(
+                    padding: const EdgeInsets.only(top: 3, left: 3),
+                    child: SizedBox(
+                        width: 140,
+                        height: 140,
+                        child: Stack(children: <Widget>[
+                          Container(
+                            decoration: BoxDecoration(
+                              image: const DecorationImage(
+                                fit: BoxFit.fill,
+                                image: AssetImage(
+                                  'assets/images/house.png',
                                 ),
                               ),
-                              Container(
-                                decoration: BoxDecoration(
-                                  gradient: LinearGradient(
-                                      begin: FractionalOffset.topCenter,
-                                      end: FractionalOffset.bottomCenter,
-                                      colors: [
-                                        Colors.black.withOpacity(0),
-                                        Colors.black,
-                                      ],
-                                      stops: const [
-                                        0,
-                                        1
-                                      ]),
-                                  borderRadius: BorderRadius.circular(10),
-                                ),
-                              ),
-                              Container(
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                          ),
+                          Container(
+                            decoration: BoxDecoration(
+                              gradient: LinearGradient(
+                                  begin: FractionalOffset.topCenter,
+                                  end: FractionalOffset.bottomCenter,
+                                  colors: [
+                                    Colors.black.withOpacity(0),
+                                    Colors.black,
+                                  ],
+                                  stops: const [
+                                    0,
+                                    1
+                                  ]),
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                          ),
+                          InkWell(
+                              onTap: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            GenreArtists(genre: 'House')));
+                              },
+                              child: Container(
                                 child: const Align(
                                   alignment: Alignment
                                       .bottomCenter, // Align however you like (i.e .centerRight, centerLeft)
                                   child: Padding(
                                     padding: EdgeInsets.all(5),
                                     child: Text(
-                                      'Artists',
+                                      'Style',
                                       style: TextStyle(
                                           fontWeight: FontWeight.bold,
                                           fontSize: 18,
@@ -424,11 +499,68 @@ class _ArtistHomeScreen extends State<ArtistHomeScreen> {
                                     ),
                                   ),
                                 ),
-                              )
-                            ])),
-                      )
-                    ],
-                  ),
+                              ))
+                        ])),
+                  )),
+                  Expanded(
+                      child: Padding(
+                    padding: const EdgeInsets.only(top: 3, left: 3),
+                    child: SizedBox(
+                        width: 140,
+                        height: 140,
+                        child: Stack(children: <Widget>[
+                          Container(
+                            decoration: BoxDecoration(
+                              image: const DecorationImage(
+                                fit: BoxFit.fill,
+                                image: AssetImage(
+                                  'assets/images/nosalive.png',
+                                ),
+                              ),
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                          ),
+                          Container(
+                            decoration: BoxDecoration(
+                              gradient: LinearGradient(
+                                  begin: FractionalOffset.topCenter,
+                                  end: FractionalOffset.bottomCenter,
+                                  colors: [
+                                    Colors.black.withOpacity(0),
+                                    Colors.black,
+                                  ],
+                                  stops: const [
+                                    0,
+                                    1
+                                  ]),
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                          ),
+                          InkWell(
+                              onTap: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => NosAliveEvent()));
+                              },
+                              child: Container(
+                                child: const Align(
+                                  alignment: Alignment
+                                      .bottomCenter, // Align however you like (i.e .centerRight, centerLeft)
+                                  child: Padding(
+                                    padding: EdgeInsets.all(5),
+                                    child: Text(
+                                      'Event',
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 18,
+                                          color: Colors.white),
+                                    ),
+                                  ),
+                                ),
+                              ))
+                        ])),
+                  )),
                 ]),
               ),
             ],
@@ -459,58 +591,190 @@ class _ArtistHomeScreen extends State<ArtistHomeScreen> {
                 child: ListView(scrollDirection: Axis.horizontal, children: [
                   Column(
                     children: [
-                      Padding(
-                        padding: const EdgeInsets.only(top: 3),
-                        child: SizedBox(
-                            width: 140,
-                            height: 140,
-                            child: Stack(children: <Widget>[
-                              Container(
-                                decoration: BoxDecoration(
-                                  image: const DecorationImage(
-                                    fit: BoxFit.fill,
-                                    image: AssetImage(
-                                      'assets/images/adele25.jpg',
+                      Expanded(
+                        child: Padding(
+                          padding: const EdgeInsets.only(top: 3),
+                          child: SizedBox(
+                              width: 140,
+                              height: 140,
+                              child: Stack(children: <Widget>[
+                                Container(
+                                  decoration: BoxDecoration(
+                                    image: const DecorationImage(
+                                      fit: BoxFit.fill,
+                                      image: AssetImage(
+                                        'assets/images/EDM.png',
+                                      ),
                                     ),
-                                  ),
-                                  borderRadius: BorderRadius.circular(10),
-                                ),
-                              ),
-                              Container(
-                                decoration: BoxDecoration(
-                                  gradient: LinearGradient(
-                                      begin: FractionalOffset.topCenter,
-                                      end: FractionalOffset.bottomCenter,
-                                      colors: [
-                                        Colors.black.withOpacity(0),
-                                        Colors.black,
-                                      ],
-                                      stops: const [
-                                        0,
-                                        1
-                                      ]),
-                                  borderRadius: BorderRadius.circular(10),
-                                ),
-                              ),
-                              Container(
-                                child: const Align(
-                                  alignment: Alignment
-                                      .bottomCenter, // Align however you like (i.e .centerRight, centerLeft)
-                                  child: Padding(
-                                    padding: EdgeInsets.all(5),
-                                    child: Text(
-                                      'Artists',
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 18,
-                                          color: Colors.white),
-                                    ),
+                                    borderRadius: BorderRadius.circular(10),
                                   ),
                                 ),
-                              )
-                            ])),
-                      )
+                                Container(
+                                  decoration: BoxDecoration(
+                                    gradient: LinearGradient(
+                                        begin: FractionalOffset.topCenter,
+                                        end: FractionalOffset.bottomCenter,
+                                        colors: [
+                                          Colors.black.withOpacity(0),
+                                          Colors.black,
+                                        ],
+                                        stops: const [
+                                          0,
+                                          1
+                                        ]),
+                                    borderRadius: BorderRadius.circular(10),
+                                  ),
+                                ),
+                                InkWell(
+                                    onTap: () {
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  GenreArtists(genre: 'EDM')));
+                                    },
+                                    child: Container(
+                                      child: const Align(
+                                        alignment: Alignment
+                                            .bottomCenter, // Align however you like (i.e .centerRight, centerLeft)
+                                        child: Padding(
+                                          padding: EdgeInsets.all(5),
+                                          child: Text(
+                                            'Style',
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 18,
+                                                color: Colors.white),
+                                          ),
+                                        ),
+                                      ),
+                                    ))
+                              ])),
+                        ),
+                      ),
                     ],
+                  ),
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.only(top: 3),
+                      child: SizedBox(
+                          width: 140,
+                          height: 140,
+                          child: Stack(children: <Widget>[
+                            Container(
+                              decoration: BoxDecoration(
+                                image: const DecorationImage(
+                                  fit: BoxFit.fill,
+                                  image: AssetImage(
+                                    'assets/images/SumolSummerFest.png',
+                                  ),
+                                ),
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                            ),
+                            Container(
+                              decoration: BoxDecoration(
+                                gradient: LinearGradient(
+                                    begin: FractionalOffset.topCenter,
+                                    end: FractionalOffset.bottomCenter,
+                                    colors: [
+                                      Colors.black.withOpacity(0),
+                                      Colors.black,
+                                    ],
+                                    stops: const [
+                                      0,
+                                      1
+                                    ]),
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                            ),
+                            InkWell(
+                                onTap: () {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              ArtistsYouLoveEvents()));
+                                },
+                                child: Container(
+                                  child: const Align(
+                                    alignment: Alignment
+                                        .bottomCenter, // Align however you like (i.e .centerRight, centerLeft)
+                                    child: Padding(
+                                      padding: EdgeInsets.all(5),
+                                      child: Text(
+                                        'Events',
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 18,
+                                            color: Colors.white),
+                                      ),
+                                    ),
+                                  ),
+                                ))
+                          ])),
+                    ),
+                  ),
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.only(top: 3),
+                      child: SizedBox(
+                          width: 140,
+                          height: 140,
+                          child: Stack(children: <Widget>[
+                            Container(
+                              decoration: BoxDecoration(
+                                image: const DecorationImage(
+                                  fit: BoxFit.fill,
+                                  image: AssetImage(
+                                    'assets/images/VodafoneParedesDeCoura.png',
+                                  ),
+                                ),
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                            ),
+                            Container(
+                              decoration: BoxDecoration(
+                                gradient: LinearGradient(
+                                    begin: FractionalOffset.topCenter,
+                                    end: FractionalOffset.bottomCenter,
+                                    colors: [
+                                      Colors.black.withOpacity(0),
+                                      Colors.black,
+                                    ],
+                                    stops: const [
+                                      0,
+                                      1
+                                    ]),
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                            ),
+                            InkWell(
+                                onTap: () {
+                                  Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                          builder: (context) =>
+                                              ArtistsYouLoveEvents()));
+                                },
+                                child: Container(
+                                  child: const Align(
+                                    alignment: Alignment
+                                        .bottomCenter, // Align however you like (i.e .centerRight, centerLeft)
+                                    child: Padding(
+                                      padding: EdgeInsets.all(5),
+                                      child: Text(
+                                        'Events',
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 18,
+                                            color: Colors.white),
+                                      ),
+                                    ),
+                                  ),
+                                ))
+                          ])),
+                    ),
                   ),
                 ]),
               ),

@@ -2370,12 +2370,13 @@
     "5777": {
       "events": {},
       "links": {},
-      "address": "0xcc653F001A728fbAFe0a807cB990f14ad19822F1",
-      "transactionHash": "0x9f01caa48519eb7d77d88ed57cee4de28467498c1a72ba42041f4aea013b4256"
+      "address": "0x8d646edac3A97411620be2471E6fe0204f80f440",
+      "transactionHash": "0xbead73cd349aefa40b6628819eb183bee7f16f31c27a717800466f67d608ce7d"
     }
   },
   "schemaVersion": "3.4.4",
   "updatedAt": "2022-02-03T15:53:03.308Z",
+  "networkType": "ethereum",
   "devdoc": {
     "details": "Implements voting process along with vote delegation",
     "methods": {},

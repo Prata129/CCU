@@ -9,6 +9,7 @@ import 'package:revio/ui/ArtistHomeScreen.dart';
 import 'package:revio/ui/FolderScreen.dart';
 import 'package:revio/ui/artist/albumScreen.dart';
 import 'package:revio/ui/artist/artistStats.dart';
+import 'package:revio/ui/artistManager.dart';
 import 'package:revio/ui/auth/login_model.dart';
 import 'package:revio/ui/auth/signup_model.dart';
 import 'package:revio/ui/auth/loginpage.dart';
@@ -74,14 +75,26 @@ class MyApp extends StatelessWidget {
 }
 
 class AuthenticationWrapper extends StatelessWidget {
-  const AuthenticationWrapper({Key? key}) : super(key: key);
-
+  AuthenticationWrapper({Key? key}) : super(key: key);
+  UserRepo _userRepo = UserRepo();
   @override
   Widget build(BuildContext context) {
     final firebaseUser = context.watch<User?>();
-
     if (firebaseUser != null) {
-      return Manager();
+      _userRepo.getUser().then((value) {
+        print(value.email);
+        if(value.isArtist) {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+            builder: (context) => ArtistManager()));
+        } else {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+            builder: (context) => Manager()));
+        }
+      });
     }
     return const LoginPage();
   }

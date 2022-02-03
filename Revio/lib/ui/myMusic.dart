@@ -14,6 +14,7 @@ import 'package:revio/data/song_repo.dart';
 class MyMusic extends StatelessWidget {
   PageController pageController = PageController();
   String _artist;
+  int index = 0;
   MyMusic({required String artist}) : _artist = artist;
 
   List<Song> _songs = [];
@@ -232,7 +233,8 @@ class MyMusic extends StatelessWidget {
                         shrinkWrap: true,
                         itemCount: snapshot.data!.length,
                         itemBuilder: (context, index) {
-                          return SongItem(song: snapshot.data![index]);
+                          return SongItem(
+                              song: snapshot.data![index], index: index);
                         },
                       ),
                     );
@@ -244,122 +246,3 @@ class MyMusic extends StatelessWidget {
     );
   }
 }
-
-
-//**************Add Music********************
-
-        /* Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-            Padding(
-              padding: const EdgeInsets.only(top: 25),
-              child: Container(
-                width: 256,
-                height: 56,
-                //color: Color.fromARGB(255, 58, 169, 206),
-                decoration: BoxDecoration(
-                    color: Color.fromARGB(255, 229, 189, 88),
-                    borderRadius: BorderRadius.circular(10)),
-                child: InkWell(
-                  onTap: () {},
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: <Widget>[
-                      Expanded(
-                        flex: 1,
-                        child: Text(
-                          '     Add Music',
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 35,
-                              color: Color.fromARGB(255, 0, 0, 0)),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            )
-          ]), */
-
-
-
-//*************wheel scroll*************** */
-
-          /*ListWheelScrollViewX.useDelegate(
-                useMagnifier: true,
-                physics: ScrollPhysics(),
-                magnification: 1,
-                offAxisFraction: -2,
-                overAndUnderCenterOpacity: 0.5,
-                scrollDirection: Axis.horizontal,
-                diameterRatio: 0.7,
-                itemExtent: 100,
-                clipBehavior: Clip.none,
-                childDelegate: ListWheelChildLoopingListDelegate(
-                  children: [
-                    Container(
-                      width: 100,
-                      height: 100,
-                      //color: Color.fromARGB(255, 58, 169, 206),
-                      decoration: BoxDecoration(
-                          color: Color.fromARGB(255, 229, 189, 88),
-                          borderRadius: BorderRadius.circular(10)),
-                      child: InkWell(
-                        onTap: () {},
-                      ),
-                    ),
-                    Container(
-                      width: 100,
-                      height: 100,
-                      //color: Color.fromARGB(255, 58, 169, 206),
-                      decoration: BoxDecoration(
-                          color: Color.fromARGB(255, 88, 229, 100),
-                          borderRadius: BorderRadius.circular(10)),
-                      child: InkWell(
-                        onTap: () {},
-                      ),
-                    ),
-                    InkWell(
-                      onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => ArtistHomeScreen()));
-                      },
-                      child: Container(
-                        width: 100,
-                        height: 100,
-                        decoration: BoxDecoration(
-                          image: const DecorationImage(
-                            fit: BoxFit.contain,
-                            image: AssetImage(
-                              'assets/images/adele25.jpg',
-                            ),
-                          ),
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                      ),
-                    ),
-                    Container(
-                      width: 100,
-                      height: 100,
-                      //color: Color.fromARGB(255, 58, 169, 206),
-                      decoration: BoxDecoration(
-                          color: Color.fromARGB(255, 229, 88, 118),
-                          borderRadius: BorderRadius.circular(10)),
-                      child: InkWell(
-                        onTap: () {},
-                      ),
-                    ),
-                    Container(
-                      width: 100,
-                      height: 100,
-                      //color: Color.fromARGB(255, 58, 169, 206),
-                      decoration: BoxDecoration(
-                          color: Color.fromARGB(255, 88, 217, 229),
-                          borderRadius: BorderRadius.circular(10)),
-                      child: InkWell(
-                        onTap: () {},
-                      ),
-                    ),
-                  ],
-                )),*/ 

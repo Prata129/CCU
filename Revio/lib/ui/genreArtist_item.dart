@@ -8,8 +8,10 @@ import 'package:google_fonts/google_fonts.dart';
 
 class GenreArtistItem extends StatelessWidget {
   final User artist;
+  final int index;
 
-  GenreArtistItem({Key? key, required this.artist}) : super(key: key);
+  GenreArtistItem({Key? key, required this.artist, required this.index})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +31,7 @@ class GenreArtistItem extends StatelessWidget {
                           image: DecorationImage(
                             fit: BoxFit.contain,
                             image: AssetImage(
-                              'assets/images/user1.png',
+                              'assets/images/artist$index.png',
                             ),
                           ),
                           borderRadius: BorderRadius.circular(10),

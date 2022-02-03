@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:revio/ui/nosAliveEvent.dart';
+import 'package:revio/ui/artistsYouLoveEvents.dart';
 
 const double SQUARE_SIZE = 61;
 const double SQUARE_SIZE_BIG = 150;
@@ -58,7 +60,8 @@ class EventsHomePage extends StatelessWidget {
               ],
             ),
 
-            Container(
+            InkWell(
+              child: Container(
               alignment: Alignment.centerLeft,
               margin: const EdgeInsets.only(top: 20),
               height: 68,
@@ -103,6 +106,12 @@ class EventsHomePage extends StatelessWidget {
                 ],
               ),
             ),
+              onTap: (){
+                Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => NosAliveEvent()));
+              },
+            ),
+
             //quadrados iguais aos do Rafa
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -142,7 +151,9 @@ class EventsHomePage extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(10),
                               ),
                             ),
-                            Container(
+
+                            InkWell(
+                              child: Container(
                               child: const Align(
                                 alignment: Alignment
                                     .bottomCenter, // Align however you like (i.e .centerRight, centerLeft)
@@ -157,7 +168,12 @@ class EventsHomePage extends StatelessWidget {
                                   ),
                                 ),
                               ),
-                            )
+                            ),
+                              onTap: (){
+                                Navigator.push(context,
+                                  MaterialPageRoute(builder: (context) => ArtistsYouLoveEvents()));
+                              },
+                            ),
                           ])),
                     )
                   ],
@@ -197,7 +213,8 @@ class EventsHomePage extends StatelessWidget {
                                   borderRadius: BorderRadius.circular(10),
                                 ),
                               ),
-                              Container(
+                              InkWell(
+                                child: Container(
                                 child: const Align(
                                   alignment: Alignment
                                       .bottomCenter, // Align however you like (i.e .centerRight, centerLeft)
@@ -212,7 +229,12 @@ class EventsHomePage extends StatelessWidget {
                                     ),
                                   ),
                                 ),
-                              )
+                              ),
+                                onTap: (){
+                                Navigator.push(context,
+                                  MaterialPageRoute(builder: (context) => ArtistsYouLoveEvents()));
+                              },
+                              ),
                             ])
                           )
                         ),
@@ -258,7 +280,9 @@ class EventsHomePage extends StatelessWidget {
                                   borderRadius: BorderRadius.circular(10),
                                 ),
                               ),
-                              Container(
+
+                              InkWell(
+                                child: Container(
                                 child: const Align(
                                   alignment: Alignment
                                       .bottomCenter, // Align however you like (i.e .centerRight, centerLeft)
@@ -273,7 +297,12 @@ class EventsHomePage extends StatelessWidget {
                                     ),
                                   ),
                                 ),
-                              )
+                              ),
+                                onTap: (){
+                                Navigator.push(context,
+                                  MaterialPageRoute(builder: (context) => ArtistsYouLoveEvents()));
+                              },
+                              ),
                             ]))),
                   ],
                 ),
@@ -312,7 +341,8 @@ class EventsHomePage extends StatelessWidget {
                                   borderRadius: BorderRadius.circular(10),
                                 ),
                               ),
-                              Container(
+                              InkWell(
+                                child: Container(
                                 child: const Align(
                                   alignment: Alignment
                                       .bottomCenter, // Align however you like (i.e .centerRight, centerLeft)
@@ -327,7 +357,12 @@ class EventsHomePage extends StatelessWidget {
                                     ),
                                   ),
                                 ),
-                              )
+                              ),
+                                onTap: (){
+                                Navigator.push(context,
+                                  MaterialPageRoute(builder: (context) => ArtistsYouLoveEvents()));
+                              },
+                              ),
                             ]))),
                   ],
                 ),

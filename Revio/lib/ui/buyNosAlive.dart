@@ -78,7 +78,7 @@ class BuyNosAlive extends StatelessWidget {
           children:[
             AppBar(
               leading: IconButton(
-                  icon: Icon(Icons.arrow_back_ios), onPressed: () {}),
+                  icon: Icon(Icons.arrow_back_ios), onPressed: () => Navigator.of(context).pop(),),
               iconTheme: IconThemeData(color: Color(0xFFC2C2C2)),
               backgroundColor: Color(0xFF222222),
               title: Text("Nos Alive'22",

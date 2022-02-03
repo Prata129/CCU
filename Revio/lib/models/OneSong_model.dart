@@ -13,7 +13,7 @@ class Song {
       required this.features,
       required this.path,
       required this.name,
-      inPlaylist,
+      required this.inPlaylist,
     });
 
   Map<String, dynamic> toMap() {

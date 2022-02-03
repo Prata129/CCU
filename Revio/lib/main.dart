@@ -15,6 +15,7 @@ import 'package:revio/ui/auth/loginpage.dart';
 import 'package:revio/service/auth/authentication_service.dart';
 import 'package:revio/ui/homeScreen.dart';
 import 'package:revio/ui/libraryScreen.dart';
+import 'package:revio/ui/manager.dart';
 import 'package:revio/ui/profile/profile_view.dart';
 import 'package:revio/ui/settingsScreen.dart';
 import 'package:revio/ui/aboutScreen.dart';
@@ -25,6 +26,7 @@ import 'package:revio/ui/nosAliveEvent.dart';
 import 'package:revio/ui/smartContract.dart';
 import 'package:revio/ui/mySongsScreen.dart';
 import 'package:revio/ui/buyNosAlive.dart';
+import 'package:revio/ui/blockchainStats.dart';
 
 import 'data/song_repo.dart';
 import 'models/song_model.dart';
@@ -79,7 +81,7 @@ class AuthenticationWrapper extends StatelessWidget {
     final firebaseUser = context.watch<User?>();
 
     if (firebaseUser != null) {
-      return ArtistHomeScreen();
+      return Manager();
     }
     return const LoginPage();
   }

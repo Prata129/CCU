@@ -51,7 +51,7 @@ class _ArtistManager extends State<ArtistManager> {
         duration: Duration(milliseconds: 200),
       ),
       navBarStyle:
-          NavBarStyle.style15, // Choose the nav bar style with this property.
+          NavBarStyle.style8, // Choose the nav bar style with this property.
     );
   }
 

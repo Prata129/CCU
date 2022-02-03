@@ -12,6 +12,7 @@ class Song extends ChangeNotifier {
   String _description = "";
   String _features = "";
   String _path = "";
+  bool _inPlaylist = false;
 
   String get name {
     return _name;
@@ -31,6 +32,14 @@ class Song extends ChangeNotifier {
 
   String get path {
     return _path;
+  }
+
+  bool get inPlaylist {
+    return _inPlaylist;
+  }
+
+  set inPlaylist(bool value) {
+    _inPlaylist = value;
   }
 
   set name(String name) {

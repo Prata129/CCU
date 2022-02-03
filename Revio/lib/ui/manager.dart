@@ -52,7 +52,7 @@ class _Manager extends State<Manager> {
         duration: Duration(milliseconds: 200),
       ),
       navBarStyle:
-          NavBarStyle.style15, // Choose the nav bar style with this property.
+          NavBarStyle.style8, // Choose the nav bar style with this property.
     );
   }
 

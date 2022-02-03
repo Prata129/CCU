@@ -176,8 +176,9 @@ class _AddSongState extends State<AddSongScreen> {
                                           Navigator.push(
                                               context,
                                               MaterialPageRoute(
-                                                  builder: (context) =>
-                                                      MyMusic()));
+                                                  builder: (context) => MyMusic(
+                                                      artist:
+                                                          viewModel.artist)));
                                         },
                                       ),
                                     ]))
@@ -221,6 +222,8 @@ class _AddSongState extends State<AddSongScreen> {
 
     viewModel.path = await ref.getDownloadURL();
     viewModel.addSong();
+
+    task = FirebaseApi.uploadFile(ref, file!);
 
     setState(() {});
   }

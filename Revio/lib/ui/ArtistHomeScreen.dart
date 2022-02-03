@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:revio/ui/artist/artistStats.dart';
 import 'package:revio/ui/settingsScreen.dart';
+import 'package:revio/ui/blockchain.dart';
 import 'package:revio/ui/myMusic.dart';
 import 'package:revio/ui/myFans.dart';
 import 'package:revio/data/user_repo.dart';
@@ -101,6 +102,13 @@ class _ArtistHomeScreen extends State<ArtistHomeScreen> {
                         context,
                         MaterialPageRoute(
                             builder: (context) => ArtistStatsScreen()));
+                    /*Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => Contract()));
+                        
+                        RAFAEL: I COMMENTED TO ALLOW THE BUTTON TO GO TO
+                        ARTIST STATS BUT THIS WAS BEING USED TO TRY GANACHE ?
+
+                        */
                   },
                   child: Column(
                     children: [
@@ -218,8 +226,11 @@ class _ArtistHomeScreen extends State<ArtistHomeScreen> {
                     borderRadius: BorderRadius.circular(10)),
                 child: InkWell(
                   onTap: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => MyMusic()));
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) =>
+                                MyMusic(artist: getUsername())));
                   },
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.center,

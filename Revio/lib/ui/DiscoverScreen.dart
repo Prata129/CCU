@@ -610,6 +610,7 @@ class DiscoverScreen extends StatelessWidget {
 class GenreArtists extends StatelessWidget {
   PageController pageController = PageController();
   String _genre;
+  int picIndex = 0;
   GenreArtists({required String genre}) : _genre = genre;
 
   List<User> _artists = [];
@@ -661,7 +662,8 @@ class GenreArtists extends StatelessWidget {
                       physics: const NeverScrollableScrollPhysics(),
                       itemCount: snapshot.data!.length,
                       itemBuilder: (context, index) {
-                        return GenreArtistItem(artist: snapshot.data![index]);
+                        return GenreArtistItem(
+                            artist: snapshot.data![index], index: picIndex++);
                       },
                     ),
                   );

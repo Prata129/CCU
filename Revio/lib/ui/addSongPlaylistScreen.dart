@@ -12,6 +12,7 @@ import 'package:revio/data/song_repo.dart';
 class AddSongPlaylist extends StatelessWidget {
   PageController pageController = PageController();
   String _artist;
+  int index = 0;
   AddSongPlaylist({required String artist}) : _artist = artist;
 
   List<Song> _songs = [];
@@ -145,7 +146,8 @@ class AddSongPlaylist extends StatelessWidget {
                         shrinkWrap: true,
                         itemCount: snapshot.data!.length,
                         itemBuilder: (context, index) {
-                          return SongPlaylistItem(song: snapshot.data![index]);
+                          return SongPlaylistItem(
+                              song: snapshot.data![index], index: index++);
                         },
                       ),
                     );
